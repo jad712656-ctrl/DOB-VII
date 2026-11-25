@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DOB 7</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="DOB 7">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Great+Vibes&display=swap">
+<style>
+:root{--bg:#F3F7FF;--sf:#fff;--tx:#0B1F4D;--mu:#5B6B8F;--pr:#1F55E0;--pt:#fff;--soft:#E6EEFF;--ln:#D6E1F7;--bad:#C0392B;--badb:#FDECEA;--ok:#17724B;--okb:#E5F5EC;--wr:#8A5A00;--wrb:#FFF4DB;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1430;--sf:#111E42;--tx:#E8EEFF;--mu:#97A6CC;--pr:#5B8CFF;--pt:#07122E;--soft:#1A2B5C;--ln:#233463;--bad:#FF8A7A;--badb:#3A1B22;--ok:#6FD3A0;--okb:#12362B;--wr:#F2C66B;--wrb:#3A2E10;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0A1430;--sf:#111E42;--tx:#E8EEFF;--mu:#97A6CC;--pr:#5B8CFF;--pt:#07122E;--soft:#1A2B5C;--ln:#233463;--bad:#FF8A7A;--badb:#3A1B22;--ok:#6FD3A0;--okb:#12362B;--wr:#F2C66B;--wrb:#3A2E10;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"IBM Plex Sans Arabic",system-ui,Tahoma,sans-serif;line-height:1.7}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--pr);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 48px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.logo{font-weight:700;font-size:34px;letter-spacing:.14em;color:var(--pr);direction:ltr;line-height:1}
+.logo i{font-style:normal;color:var(--tx);font-weight:500}
+.tag{color:var(--mu);font-size:14px}
+h2{font-size:15px;margin:0 0 10px;font-weight:600;color:var(--mu)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--ln);background:var(--sf);border-radius:999px;padding:6px 14px;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--pr);border-color:var(--pr);color:var(--pt);font-weight:600}
+.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;margin-top:20px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:minmax(0,1fr)}}
+main,aside{min-width:0}
+#add{flex:1 1 160px;min-width:0;max-width:100%}
+.logo{white-space:nowrap}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:16px}
+.bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.bar label{color:var(--mu);font-size:14px}
+input[type=number]{width:96px;border:1px solid var(--ln);background:var(--bg);border-radius:8px;padding:6px 8px;text-align:center}
+select{border:1px solid var(--ln);background:var(--bg);border-radius:8px;padding:6px 8px;max-width:100%}
+.ph{font-weight:600;color:var(--pr);font-size:14px;margin:14px 0 4px}
+.row{display:grid;grid-template-columns:1fr 84px 72px 28px;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--ln)}
+.row .nm{background:none;border:0;text-align:right;padding:2px 0;font-weight:500}
+.row .nm[aria-current="true"]{color:var(--pr);font-weight:700}
+.row input{width:100%;padding:4px}
+.g{text-align:center;color:var(--mu);font-size:14px;direction:ltr}
+.x{border:0;background:none;color:var(--mu);font-size:18px;line-height:1}
+.head{display:grid;grid-template-columns:1fr 84px 72px 28px;gap:8px;color:var(--mu);font-size:12px}
+.head span:nth-child(2),.head span:nth-child(3){text-align:center}
+.tot{display:flex;justify-content:space-between;margin-top:12px;font-weight:700;padding:10px 12px;border-radius:10px;background:var(--soft)}
+.tot.bad{background:var(--badb);color:var(--bad)}
+.msg{font-size:14px;padding:8px 12px;border-radius:10px;margin-top:8px}
+.msg.bad{background:var(--badb);color:var(--bad)}.msg.ok{background:var(--okb);color:var(--ok)}.msg.wr{background:var(--wrb);color:var(--wr)}
+ol{margin:0;padding-inline-start:20px;font-size:14px}
+.btn{background:var(--pr);color:var(--pt);border:0;border-radius:10px;padding:8px 16px;font-weight:600}
+.btn.l{background:var(--soft);color:var(--pr)}
+.sub{color:var(--mu);font-size:14px;margin:2px 0 10px}
+.list{margin:0 0 10px;padding:0;list-style:none;font-size:14px}
+.list li{padding:6px 10px;border-radius:8px;margin-bottom:4px}
+.list.p li{background:var(--okb);color:var(--ok)}.list.c li{background:var(--badb);color:var(--bad)}
+.lk{border:1px solid var(--ln);background:var(--bg);border-radius:999px;padding:2px 10px;font-size:13px}
+.lk.in{border-color:var(--ok);color:var(--ok)}.lk.no{border-color:var(--bad);color:var(--bad)}
+.side{position:sticky;top:calc(12px + env(safe-area-inset-top,0px))}
+@media(max-width:820px){.side{position:static}}
+.sec{margin-top:16px}
+html:root:not([data-theme="zz"]){--bg:#000;--sf:#0D0F14;--tx:#F2F5FF;--mu:#8D97B3;--pr:#3D7BFF;--pt:#fff;--soft:#16203F;--ln:#232B42;--bad:#FF8A7A;--badb:#2E1517;--ok:#6FD3A0;--okb:#102A20;--wr:#F2C66B;--wrb:#2E2410;color-scheme:dark}
+body{background:#000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Ctext x='600' y='460' font-size='560' font-weight='800' font-family='Arial,Helvetica,sans-serif' fill='%231F55E0' fill-opacity='.13' text-anchor='middle'%3EDOB%3C/text%3E%3C/svg%3E") center 38%/min(96vw,1100px) no-repeat fixed}
+.card{background:rgba(10,12,18,.9)}
+#prods{max-height:150px;overflow:auto}
+
+.sig{font-family:"Great Vibes","Snell Roundhand","Apple Chancery","Brush Script MT",cursive;font-size:24px;color:#d9c48f;direction:ltr;line-height:1.1;margin-top:4px;letter-spacing:.02em}
+.lg{display:flex;flex-direction:column}
+details.cust{margin:0 0 12px;border:1px dashed var(--ln);border-radius:10px;padding:8px 12px}
+details.cust summary{cursor:pointer;color:var(--pr);font-weight:600;font-size:14px}
+.cf{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+.cf input[type=text],.pk input[type=text]{flex:1;min-width:150px;border:1px solid var(--ln);background:var(--bg);border-radius:8px;padding:6px 8px}
+.pk{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+#splash{position:fixed;inset:0;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center;direction:ltr;color:#fff;background:radial-gradient(ellipse at 50% 38%,#122255 0%,#05081a 55%,#000 100%);transition:opacity .9s ease,visibility .9s ease;cursor:pointer}
+#splash.off{opacity:0;visibility:hidden}
+.sp-top{letter-spacing:.6em;font-size:13px;color:#8D97B3;padding-left:.6em;font-family:system-ui,Arial,sans-serif}
+.sp-name{font-family:"Great Vibes","Snell Roundhand","Apple Chancery","Brush Script MT",cursive;font-size:clamp(54px,17vw,128px);line-height:1.3;padding:.05em .15em .15em;background:linear-gradient(95deg,#8fb0ff 0%,#fff 45%,#e3c477 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:wr 2.6s cubic-bezier(.45,0,.2,1) .3s both}
+.sp-line{width:min(260px,60vw);height:1px;background:linear-gradient(90deg,transparent,#e3c477,transparent);animation:fd 1.4s ease 2.2s both}
+.sp-sub{font-size:15px;color:#aab4d4;direction:rtl;animation:fd 1.4s ease 2.4s both}
+.sp-btn{margin-top:10px;border:1px solid #e3c477;background:transparent;color:#e3c477;border-radius:999px;padding:8px 34px;font-weight:600;font-size:15px;animation:fd 1.2s ease 2.8s both}
+.sp-btn:hover{background:#e3c477;color:#000}
+@keyframes wr{from{clip-path:inset(-10% 100% -10% 0)}to{clip-path:inset(-10% -5% -10% 0)}}
+@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.sp-name,.sp-line,.sp-sub,.sp-btn{animation:none}#splash{transition:none}}
+.rw{padding:8px 0;border-bottom:1px solid var(--ln)}.r1{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.r1 input[list]{flex:1 1 140px;min-width:0}.r1 input[type=number]{width:78px}.r1 .g{min-width:56px}.r1 input,#pn,#fq{border:1px solid var(--ln);background:var(--bg);border-radius:8px;padding:6px 8px}.rw .chips{margin-top:6px}.fi{display:block;width:100%;text-align:right;border:1px solid var(--ln);background:var(--bg);border-radius:10px;padding:8px 10px;margin-bottom:6px}small{color:var(--mu)}[dir=ltr] .fi{text-align:left}#steps li{white-space:pre-line;margin-bottom:8px}#iw{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:16px}#iw[hidden]{display:none}.mb{background:var(--sf);border:1px solid var(--ln);border-radius:14px;max-width:460px;width:100%;max-height:85vh;overflow:auto;padding:16px}
+</style>
+</head>
+<body>
+<div id="splash" role="dialog" aria-label="lm pcd p:wo d:da s">
+  <div class="sp-top">DOB 7</div>
+  <div class="sp-name">lm pcd p:wo d:da s</div>
+  <div class="sp-line"></div>
+  <div class="sp-sub">مصنع وصفات مواد التجميل</div>
+  <button class="sp-btn" id="spgo" type="button">ادخل</button>
+</div>
+<div class="wrap">
+<div class="wrap">
+<header>  <div class="lg"><div class="logo">DOB <i>7</i></div><div class="sig">lm pcd p:wo d:da s</div></div><button class="btn l" id="lang">EN | AR</button> <span class="tag">اكتب منتجك واختر وظيفة كل مكوّن</span></header>
+<div class="card"><h2>منتجك</h2>
+<div class="bar"><input id="pn" type="text" maxlength="60" placeholder="اسم المنتج (مثال: كريم اليدين)" aria-label="اسم المنتج" style="flex:1 1 200px"><label for="batch">الدفعة (غ)</label><input type="number" id="batch" min="1" step="10" value="100"></div>
+<div id="rows"></div>
+<div class="bar" style="margin-top:10px"><button class="btn l" id="addr">+ إضافة مكوّن</button><button class="btn l" id="clr">مسح الكل</button><button class="btn l" id="copy">نسخ الوصفة</button><button class="btn" id="make" style="margin-inline-start:auto">اصنع</button></div>
+<div class="tot" id="tot"></div></div>
+<div id="res" hidden><div class="card sec"><h2 id="eh">الأخطاء وطريقة تصحيحها</h2><div id="errs"></div></div>
+<div class="card sec"><h2>طريقة التحضير</h2><ol id="steps"></ol></div></div>
+<div class="card sec"><h2>جدول الوظائف (83) — اكتب اسم مكوّن لترى وظائفه، أو ابحث ثم اضغط لتطبيق وظيفة على الصف المحدّد</h2><input id="fq" type="search" placeholder="اكتب اسم مكوّن واختر من الاقتراحات (مثال: جلسرين)" aria-label="بحث في الوظائف" style="width:100%;margin-bottom:10px"><div id="fsg" class="chips" style="margin-bottom:10px"></div><div id="fres" style="max-height:340px;overflow:auto"></div></div>
+<div class="sub" style="margin-top:14px">الوظائف من CosIng. الأمثلة والنسب من خبرة التركيب وتقريبية. الحدود القانونية في الملاحق II–VI من اللائحة 1223/2009؛ تحقّق منها قبل أي تسويق.</div>
+</div>
+<div id="iw" hidden><div class="mb" id="ib"></div></div>
+<datalist id="dn"></datalist><datalist id="df"></datalist>
+<script>
+const I={};
+[
+["w","ماء مقطر","المذيب الأساسي","A",0,100,"آمن ومتوفر ويذيب المكونات المائية","يحتاج مادة حافظة وإلا نمت فيه الميكروبات",[],[]],
+["gly","جليسرين","مرطب","A",1,10,"يجذب الماء للبشرة وسعره منخفض","فوق 10% يعطي إحساساً لزجاً",["ha","pan","nia"],[]],
+["ha","حمض الهيالورونيك (محلول 1%)","مرطب عميق","C",0.5,5,"يحتفظ بالماء بكثافة ويمنح امتلاء","قد يسحب الماء من البشرة في الجو شديد الجفاف",["gly","nia","pan"],[]],
+["nia","نياسيناميد (B3)","منظم دهون ومفتح","C",2,10,"يقلل المسام والبقع ويقوي حاجز البشرة","فوق 5% قد يسبب احمراراً للبشرة الحساسة",["ha","pan","gly"],["vc"]],
+["pan","بانثينول (B5)","مهدئ ومرمم","C",0.5,5,"يهدئ التهيج ويرمم الجلد والشعر","قد يخفف قوام الجل عند الزيادة",["ha","gly","nia","ala"],[]],
+["alo","جل الألوفيرا","مهدئ ومرطب","A",2,30,"ترطيب خفيف وتهدئة سريعة","ثباته أقل ويحتاج حافظاً جيداً",["pan","ala","gly"],[]],
+["shea","زبدة الشيا","مرطب دهني","B",2,40,"غنية بالفيتامينات وتمنح ترميماً عميقاً","ثقيلة وقد تسد المسام للبشرة الدهنية",["ve","jo"],[]],
+["jo","زيت الجوجوبا","زيت مرطب","B",1,15,"يشبه دهون البشرة وثابت ضد الأكسدة","سعره مرتفع",["shea","ve"],[]],
+["alm","زيت اللوز الحلو","زيت مرطب","B",2,30,"ناعم ومغذٍّ ورخيص نسبياً","غير مناسب لمن لديهم حساسية المكسرات",["ve","shea"],[]],
+["coc","زيت جوز الهند","زيت صلب مرطب","B",2,40,"مرطب قوي وملمس مريح للجسم","يسد المسام ولا يناسب الوجه",["shea","bw"],[]],
+["cas","زيت الخروع","زيت كثيف ولمعان","B",3,60,"يمنح لمعاناً وقواماً كثيفاً وترطيباً قوياً","لزج الملمس",["bw","shea","ve"],[]],
+["bw","شمع النحل","مثبّت قوام","B",3,25,"يصلّب القوام ويكوّن طبقة حامية","غير نباتي وقد يسد المسام",["shea","cas","coc"],[]],
+["ew","شمع مستحلب","مستحلب (يدمج الماء والزيت)","B",3,8,"يعطي مستحلباً ثابتاً وملمساً ناعماً","الزيادة تعطي ملمساً شمعياً",["cet","dim"],[]],
+["cet","سيتيريل ألكوهول","مكثف ومليّن","B",1,6,"يكثف القوام ويلين البشرة والشعر","نادراً ما يسبب حساسية",["ew","btms"],[]],
+["btms","BTMS-50 (مكيّف شعر)","مكيّف مستحلب","B",2,6,"يفك التشابك ويمنح نعومة فائقة","لا يُخلط مع المنظفات سالبة الشحنة مثل SCI",["cet","pan"],["sci"]],
+["dim","ديميثيكون","ملمس حريري","B",0.5,5,"يعطي ملمساً حريرياً وحماية سطحية","غير قابل للتحلل البيئي",["ew"],[]],
+["ve","فيتامين E","مضاد أكسدة","C",0.2,1,"يطيل عمر الزيوت ويحمي من الأكسدة","قد يسبب حساسية بتركيز عالٍ",["shea","jo","alm"],[]],
+["pre","مادة حافظة (فينوكسي إيثانول + إيثيل هكسيل جليسرين)","حافظ واسع الطيف","C",0.5,1,"يحمي المنتج من العفن والبكتيريا","ضروري لأي منتج به ماء؛ تجاوز الحد يهيّج",[],[]],
+["xg","صمغ الزانثان","مكثف","A",0.1,1,"يكثف ويثبّت القوام بتركيز قليل","فوق 0.5% قد يعطي قواماً مطاطياً",["gly"],[]],
+["cit","حمض الستريك","ضبط الـ pH","C",0.05,0.5,"يضبط الحموضة لتناسب البشرة والشعر","الزيادة تهيّج وتخفض اللزوجة",[],[]],
+["cab","كوكاميدوبروبيل بيتاين","منظف ومخفف للتهيج","A",5,15,"رغوة ناعمة ويخفف قسوة المنظفات","يحتاج ملحاً للتكثيف",["dg","sci","nacl"],[]],
+["dg","ديسيل جلوكوسيد","منظف لطيف","A",1,25,"نباتي ولطيف جداً على الجلد","رغوته أخف",["cab"],[]],
+["sci","سوديوم كوكويل إيزيثيونات","منظف صلب لطيف","A",5,15,"رغوة كريمية ولطيف","لا يتوافق مع المكيّفات الموجبة",["cab"],["btms"]],
+["nacl","ملح الطعام","مكثف للمنظفات","A",0.2,2,"يكثف الشامبو والغسول","الزيادة تقلل اللزوجة وتسبب جفافاً",["cab"],[]],
+["kao","طين الكاولين","ممتص دهون","A",5,40,"يمتص الدهون وينظف المسام بلطف","قد يجفف البشرة الحساسة",["alo","gly"],[]],
+["ala","ألانتوين","مهدئ","A",0.1,0.5,"يهدئ ويسرّع التئام الجلد","فعاليته محدودة وحده",["pan","alo"],[]],
+["vc","فيتامين C (حمض الأسكوربيك)","مفتح ومضاد أكسدة","A",5,15,"يفتح البشرة ويحاربها الأكسدة","غير ثابت ويتأكسد بسرعة ويحتاج pH منخفضاً",["ve"],["nia","ret"]],
+["ret","ريتينول","تجديد الخلايا","C",0.1,1,"تجديد قوي ومحاربة التجاعيد","تهيج وحساسية للشمس ولا يناسب الحمل",["pan"],["vc","sal"]],
+["sal","حمض الساليسيليك","مقشر وعلاج الحبوب","C",0.5,2,"يفتح المسام ويعالج الحبوب","يجفف ولا يناسب الحمل",["nia"],["ret"]],
+["eo","زيت عطري (يختاره المستخدم)","زيت عطري عام — اختر نوعه","C",0.1,1,"اضغط لاختيار الزيت العطري من القائمة أو اكتب اسمه بنفسك","الحدود تتغير بحسب الزيت الذي تختاره",["hco40"],[]],
+["sq","سكوالان (Squalane)","مرطب خفيف","B",1,20,"خفيف وغير دهني وثابت","سعره أعلى من الزيوت العادية",["jo","ve"],[]],
+["arg","زيت الأرغان (Argan)","زيت للشعر والبشرة","B",2,100,"يلمّع الشعر ويرطب بعمق","مرتفع الثمن وكثير من المنتجات مغشوشة",["jo","ve"],[]],
+["oli","زيت الزيتون (Olive)","زيت مغذٍّ","B",2,60,"غني بمضادات الأكسدة ومتوفر","ثقيل وقد يسد المسام",["shea","ve"],[]],
+["ros","زيت الورد الوحشي (Rosehip)","زيت مجدد","B",2,30,"غني بالأحماض الدهنية ويحسّن الندبات","يتزنخ بسرعة ويلزمه حفظ بارد",["jo","ve"],[]],
+["cb","زبدة الكاكاو (Cocoa butter)","زبدة صلبة","B",2,40,"تصلّب الوصفات وترطب بعمق","قد تسد المسام ولها رائحة قوية",["shea","bw"],[]],
+["can","شمع الكانديليلا","شمع نباتي","B",1,15,"بديل نباتي لشمع النحل","صلب ويحتاج نسباً أقل",["cb","shea"],[]],
+["cct","ثلاثي كابريليك/كابريك (MCT)","زيت خفيف","B",2,40,"ملمس خفيف وثابت","ملمسه مصنّع",["ew"],[]],
+["gt","مستخلص الشاي الأخضر","مضاد أكسدة","A",0.5,5,"يحمي من الجذور الحرة ويهدئ","يتأكسد ويغير اللون",["pan"],[]],
+["ce","مستخلص السنتيلا (Centella)","مهدئ ومرمم","A",0.5,5,"يهدئ ويقوي حاجز البشرة","قد يغير اللون",["pan","nia"],[]],
+["caf","كافيين (Caffeine)","منشّط للدورة الدموية","C",0.5,3,"يخفف انتفاخ العين مؤقتاً","قد يترسب إذا زاد",["ha"],[]],
+["tt","زيت شجرة الشاي العطري","مطهّر طبيعي","C",0.1,1,"مضاد ميكروبات للحبوب","مهيّج ومحسّس بتركيز عالٍ",["jo"],[]],
+["pm","زيت النعناع العطري","عطر ومنعش","C",0.1,1,"إحساس منعش","لا يناسب الأطفال والبشرة الحساسة",[],[]],
+["fra","عطر (يختاره المستخدم)","عطر عام — اكتب اسمه","C",5,25,"اكتب اسم العطر الذي تستعمله؛ رائحة ثابتة","من أكثر مسببات الحساسية",["etoh"],[]],
+["etoh","إيثانول (Alcohol)","مذيب ومطهر","A",1,95,"يذيب العطور ويحفظ المنتج","يجفف البشرة والشعر",["fra"],[]],
+["sb","بنزوات الصوديوم + سوربات البوتاسيوم","حافظ (يلزمه pH أقل من 5)","C",0.5,1,"حافظ بديل مقبول","لا يعمل في pH عالٍ",["cit"],[]],
+["la","حمض اللاكتيك","مقشر لطيف (AHA)","C",1,5,"يقشر بلطف ويرطب","يزيد الحساسية للشمس",["gly"],["ret"]],
+["ga","حمض الجليكوليك","مقشر (AHA)","C",2,10,"تجديد البشرة وتفتيحها","مهيّج ويحتاج واقي شمس",["gly"],["ret"]],
+["hec","هيدروكسي إيثيل سليلوز","مكثف جل","A",0.5,2,"يصنع جلاً شفافاً ثابتاً","يتكتل إن لم يُنثر ببطء",["gly"],[]],
+["sles","سوديوم لوريث سلفات (SLES)","منظف رغوي","A",5,15,"رغوة غزيرة وتنظيف قوي بسعر قليل","قد يجفف ويهيّج الحساسة",["cab","nacl"],["btms"]],
+["sug","سكر ناعم","مقشر ميكانيكي","C",10,70,"تقشير فعال وسهل الذوبان","لا يُستخدم على الوجه (قاسٍ)",["alm","coc"],[]],
+["bk","بيكربونات الصوديوم","قاعدة / فوّار","C",1,60,"مفيد للفوران ولتحييد الروائح","قلوي ويهيّج الإبط عند الزيادة",["ca","cs"],[]],
+["cs","نشا الذرة","ماص ومالئ","C",5,60,"يمتص الرطوبة ويلطف الملمس","قد يغذي الفطريات إن بقي رطباً",["bk"],[]],
+["ca","حمض الستريك (مسحوق)","حمض فوّار","C",10,40,"يتفاعل مع البيكربونات ويفور","يهيّج عند الاستخدام المباشر",["bk"],[]],
+["sun","زيت دوار الشمس","زيت مرطب","B",2,40,"خفيف وغني بفيتامين E","يتزنخ أسرع من غيره",["ve"],[]],
+["mg","زبدة المانغو","زبدة مرطبة","B",2,30,"أخف من الشيا وناعمة","أغلى نسبياً",["shea","cb"],[]],
+["gs","غليسريل ستيارات","مستحلب مساعد","B",1,5,"يدعم ثبات المستحلب","وحده لا يكفي لمستحلب ثابت",["ew","cet"],[]],
+["ur","يوريا (Urea)","مرطب ومقشر خفيف","A",2,10,"يرطب الجلد شديد الجفاف","يلسع الجلد المتشقق",["gly","la"],[]],
+["cer","سيراميد (Ceramide NP)","ترميم الحاجز","B",0.1,1,"يعيد بناء حاجز البشرة","مرتفع الثمن ويصعب إذابته",["cet","gly"],[]],
+["bak","باكوشيول (Bakuchiol)","بديل لطيف للريتينول","B",0.5,1,"تجديد دون حساسية شمس تُذكر","أدلته أقل من الريتينول",["ve","sq"],[]],
+["aza","حمض الأزيليك","علاج التصبغات والحبوب","C",5,10,"يعالج الحبوب والتصبغات","وخز وجفاف في البداية",["nia"],[]],
+["tra","حمض الترانيكساميك","تفتيح التصبغات","A",2,5,"يخفف الكلف والبقع","قد يهيّج بعض البشرات",["nia","ha"],[]],
+["ko","حمض الكوجيك","مفتح","C",0.5,1,"يفتح البقع","يتأكسد ومحدود بـ1% في أوروبا",["pan"],[]],
+["arb","ألفا أربوتين","مفتح","A",1,2,"تفتيح آمن نسبياً","فعاليته بطيئة",["nia","ha"],[]],
+["ppd","بروبانديول","مرطب ومذيب طبيعي","A",1,10,"بديل خفيف للجليسرين","سعره أعلى",["gly","ha"],[]],
+["pca","سوديوم PCA","مرطب طبيعي","A",1,5,"من عوامل الترطيب الطبيعية للبشرة","يلين القوام عند الزيادة",["gly","ha"],[]],
+["oat","دقيق الشوفان الغرواني","مهدئ للحكة","A",1,5,"يهدئ الجلد الحساس","يترسب ويحتاج مثبتاً",["gly","xg"],[]],
+["ghpc","غوار هيدروكسي بروبيل (مكيّف)","مكيّف للشعر","A",0.1,0.5,"يحسّن التمشيط بلطف","يتراكم على الشعر الناعم",["cab","dg"],[]],
+["stear","حمض الستياريك","مكثف شمعي","B",1,5,"يمنح قواماً غنياً","يحتاج قلوياً للتصبن",["cet","ew"],[]],
+["bis","بيسابولول (Bisabolol)","مهدئ من البابونج","C",0.1,1,"يهدئ الاحمرار","نادراً ما يحسّس",["pan","ala"],[]],
+["cosg", "كوزجارد Cosgard (بنزيل ألكوهول + DHA)", "حافظ واسع الطيف", "C", 0.2, 1, "يحمي من البكتيريا والفطريات، يذوب في الماء ويعمل حتى pH 7", "يُضاف تحت 45°م ولا يُستخدم في البخاخات؛ الجرعة الشائعة 0.6%", [], []],
+["ln", "Lanette N (سيتيريل ألكوهول + سلفات سيتيريل الصوديوم)", "قاعدة كريم ذاتية الاستحلاب", "B", 3, 10, "يدمج الماء والزيت وحده ويعطي قواماً كريمياً", "أنيوني: لا يُخلط مع BTMS والمكيّفات الموجبة", ["gly", "alm", "shea", "jo", "lo"], ["btms"]],
+["lo", "Lanette O/D (سيتيريل ألكوهول)", "مكثف ومثبت قوام", "B", 1, 6, "يكثف المستحلبات ويثبتها ويلين الجلد", "لا يستحلب وحده؛ الزيادة تعطي ملمساً شمعياً", ["ew", "ln", "btms"], []],
+["l14", "Lanette 14 (ميريستيل ألكوهول)", "مكثف خفيف", "B", 1, 5, "قوام أخف وأنعم من الكحولات الأطول", "قدرته على التكثيف أضعف", ["ew", "ln"], []],
+["l16", "Lanette 16 (سيتيل ألكوهول)", "مكثف ومليّن", "B", 1, 5, "يكثف ويعطي ملمساً ناعماً ومريحاً", "الزيادة تعطي ملمساً شمعياً", ["ew", "ln", "btms"], []],
+["l18", "Lanette 18 (ستيريل ألكوهول)", "مكثف غني", "B", 1, 5, "قوام أغنى وأسمك من السيتيل", "أثقل على البشرة الدهنية", ["ew", "ln", "btms"], []],
+["l22", "Lanette 22 (بيهنيل ألكوهول)", "مثبّت قوام قوي", "B", 0.5, 4, "أقوى تثبيتاً وأطول ثباتاً ويتحمل الحرارة", "صلب ويحتاج حرارة أعلى للذوبان", ["ew", "btms"], []],
+["le", "Lanette E (سلفات سيتيريل الصوديوم)", "مستحلب مساعد أنيوني", "B", 0.5, 3, "يعزز ثبات المستحلب مع الكحولات الدهنية", "لا يتوافق مع BTMS؛ قد يهيّج عند الزيادة", ["lo", "l16", "l18"], ["btms"]],
+["lw", "Lanette W (سيتيريل ألكوهول + SLS)", "قاعدة كريم ذاتية الاستحلاب", "B", 3, 10, "كريم ثابت وسهل التحضير", "يحوي SLS وقد يهيّج الحساسة؛ لا يُخلط مع BTMS", ["gly", "alm"], ["btms"]],
+["lsx", "Lanette SX (سيتيريل + SLS + سلفات سيتيريل)", "قاعدة كريم ذاتية الاستحلاب", "B", 3, 10, "بديل لقواعد الستيارات ويعطي ملمساً ناعماً", "يحوي SLS؛ لا يُخلط مع BTMS", ["gly", "alm"], ["btms"]],
+["hco40", "Emulsogen HCO 040 (PEG-40 خروع مهدرج)", "مذيب للزيوت العطرية", "B", 1, 8, "يذيب العطور والزيوت العطرية في الماء فتصير شفافة", "الزيادة تهيّج؛ المعتاد 3 أجزاء لكل جزء زيت عطري", ["eo", "tt", "pm", "fra"], []],
+["eb2", "Eumulgin B2 (سيتيريث-20)", "مستحلب غير أيوني", "B", 0.5, 5, "يتوافق مع المواد الأنيونية والموجبة", "الزيادة تعطي ملمساً لزجاً ويحتاج كحولاً دهنياً", ["lo", "l16", "l18"], []],
+["ps", "بولي سوربات 20/80 (تويـن)", "مذيب ومستحلب", "B", 0.5, 5, "يذيب الزيوت العطرية ويثبت المستحلبات", "قد يهيّج الجلد الحساس عند الزيادة", ["eo", "tt", "pm"], []],
+["nig", "زيت الحبة السوداء", "زيت مهدئ", "B", 1, 20, "غني بالثيموكينون ويهدئ الجلد والشعر", "رائحته قوية ولونه داكن", ["jo", "ve"], []],
+["pri", "زيت التين الشوكي", "زيت مجدد", "B", 1, 10, "غني بفيتامين E ومرطب ويجدد البشرة", "سعره مرتفع جداً وكثير من المعروض مغشوش", ["jo", "ve"], []],
+["ses", "زيت السمسم", "زيت مغذٍّ", "B", 2, 40, "مغذٍّ ومتوفر ورخيص", "رائحته مميزة ويتزنخ مع الوقت", ["ve", "shea"], []],
+["rw", "ماء الورد", "ماء عطري (هيدرولات)", "A", 5, 50, "منعش ومهدئ ومتوفر جداً", "حامل للميكروبات ويلزمه حافظ", ["gly", "alo"], []],
+["ob", "ماء الزهر", "ماء عطري (هيدرولات)", "A", 5, 50, "منعش ومهدئ ويعطي رائحة محبّبة", "يلزمه حافظ ويتغير مع الوقت", ["gly", "alo"], []],
+["gh", "طين الغاسول (Rhassoul)", "طين منظف", "A", 5, 40, "ينظف الشعر والبشرة بلطف ومعروف في المغرب العربي", "يجفف إن زاد ويحتاج مرطباً", ["gly", "alo"], []],
+["vas", "فازلين (Petrolatum)", "حاجز واقٍ", "B", 2, 50, "يمنع فقدان الماء وسعره رخيص", "لا يتشربه الجلد وقد يسد المسام", ["bw", "lan"], []],
+["pa", "زيت البارافين (Mineral oil)", "زيت معدني", "B", 2, 30, "رخيص وثابت ولا يتزنخ", "سطحي ولا يغذي البشرة", ["vas", "lo"], []],
+["lan", "لانولين (Lanolin)", "مرطب للجلد الجاف", "B", 1, 10, "مرطب ممتاز للجلد الجاف جداً", "قد يسبب حساسية لبعض الناس", ["vas", "shea"], []],
+["ipm", "ميريستات الأيزوبروبيل (IPM)", "مليّن خفيف", "B", 2, 10, "ملمس خفيف ويحسن الانتشار", "قد يسد المسام عند الزيادة", ["lo", "l16"], []],
+["pg", "بروبيلين جليكول", "مرطب ومذيب", "A", 1, 10, "يرطب ويذيب بعض المكونات", "قد يهيّج البشرة الحساسة", ["gly"], []],
+["tea", "تريثانولامين (TEA)", "معدّل pH ومفعّل الكاربومر", "A", 0.1, 1, "يعدّل الحموضة ويفعّل الكاربومر", "استعمله بقدر ولا ترفع الـpH فوق 7", ["cbm"], []],
+["cbm", "كاربومر 940/980 (Carbomer)", "مكثف جل", "A", 0.2, 1, "جل شفاف قوي التكثيف", "لا يتحمل الأملاح ويحتاج معدّلاً (TEA)", ["tea", "gly"], ["nacl"]],
+["edta", "EDTA ثنائي الصوديوم", "مخلّب للمعادن", "A", 0.05, 0.2, "يحسّن فعالية الحافظ ويمنع تغيّر اللون", "الزيادة تهيّج", ["cosg", "pre", "mp"], []],
+["mp", "ميثيل بارابين + بروبيل بارابين", "حافظ شائع", "C", 0.2, 0.8, "رخيص وفعال ويعمل في مدى pH واسع", "الحد الأقصى 0.4% للواحد و0.8% للمزيج", [], []],
+["mnt", "منثول (Menthol)", "منعش", "C", 0.1, 1, "إحساس منعش وتبريد", "يهيّج الحساسة ولا يناسب الأطفال", [], []],
+["rosem", "زيت إكليل الجبل العطري", "منشّط فروة الرأس", "C", 0.1, 1, "ينشّط الفروة ورائحته منعشة", "لا يناسب الحوامل ومرضى الصرع", ["jo", "arg"], []],
+["euc", "زيت الأوكالبتوس العطري", "منعش ومطهّر", "C", 0.1, 1, "منعش ومطهّر خفيف", "لا يناسب الأطفال والحساسية", [], []],
+["hon", "عسل (Honey)", "مرطب ومهدئ", "A", 1, 10, "مرطب ومضاد ميكروبات خفيف", "يلزمه حافظ ويعطي إحساساً لزجاً", ["gly", "alo"], []]
+].forEach(a=>I[a[0]]={id:a[0],n:a[1],f:a[2],ph:a[3],min:a[4],max:a[5],pr:a[6],co:a[7],g:a[8],b:a[9]});
+
+const FRN=[
+["اختر الزيت","Choisissez l’huile"],["اختر الزبدة","Choisissez le beurre"],["اختر الزيت العطري","Choisissez l’huile essentielle"],["اكتب اسم العطر","Saisissez le nom du parfum"],
+["— اختر من القائمة —","— Choisir dans la liste —"],["أو اكتب اسمه","Ou saisissez son nom"],["تطبيق","Appliquer"],
+["أضف مكوّنك الخاص (زيت، عطر، مادة…)","Ajoutez votre propre ingrédient (huile, parfum…)"],["اسم المكوّن","Nom de l’ingrédient"],["حفظ وإضافة","Enregistrer et ajouter"],
+["حذف من مكوّناتي","Supprimer de mes ingrédients"],["زيت نباتي","Huile végétale"],["زبدة نباتية","Beurre végétal"],["زيت عطري","Huile essentielle"],["مكوّن مائي","Ingrédient aqueux"],["مادة فعالة","Actif"],["مكوّن آخر","Autre ingrédient"],["ادخل","Entrer"],
+["عام — يختاره المستخدم","Générique — au choix"],["زيوت نباتية","Huiles végétales"],["زبدات","Beurres"],["زيوت عطرية","Huiles essentielles"],["ملينات ومرطبات دهنية","Émollients"],["شموع","Cires"],["مائيات وهيدرولات","Eaux et hydrolats"],["مرطبات","Humectants"],["مواد فعالة","Actifs"],["مستحلبات وكحولات دهنية","Émulsifiants et alcools gras"],["مكثفات وبوليمرات","Épaississants et polymères"],["منظفات","Tensioactifs"],["حافظات ومخلّبات","Conservateurs et chélateurs"],["ضبط الحموضة","Ajusteurs de pH"],["مساحيق وأطيان","Poudres et argiles"],["أعشاب ومستخلصات","Plantes et extraits"],["سيليكونات","Silicones"],["أخرى","Autres"],["مكوّناتي","Mes ingrédients"],
+["زيت (يختاره المستخدم)","Huile (au choix)"],["زيت ثانٍ (يختاره المستخدم)","Huile n°2 (au choix)"],["زيت ثالث (يختاره المستخدم)","Huile n°3 (au choix)"],["زيت رابع (يختاره المستخدم)","Huile n°4 (au choix)"],["زبدة (يختارها المستخدم)","Beurre (au choix)"],["زبدة ثانية (يختارها المستخدم)","Beurre n°2 (au choix)"],["زيت عطري (يختاره المستخدم)","Huile essentielle (au choix)"],["عطر (يختاره المستخدم)","Parfum (au choix)"]
+];
+const NEWI=`
+g_oil|gen|زيت (يختاره المستخدم)|Huile (au choix)|زيت نباتي عام — اختر نوعه|B|1|60|اضغط لاختيار الزيت المناسب من القائمة أو اكتب اسمه بنفسك|الحدود تتغير بحسب الزيت الذي تختاره|ve|
+g_oil2|gen|زيت ثانٍ (يختاره المستخدم)|Huile n°2 (au choix)|زيت نباتي عام — اختر نوعه|B|1|60|اضغط لاختيار الزيت المناسب من القائمة أو اكتب اسمه بنفسك|الحدود تتغير بحسب الزيت الذي تختاره|ve|
+g_oil3|gen|زيت ثالث (يختاره المستخدم)|Huile n°3 (au choix)|زيت نباتي عام — اختر نوعه|B|1|60|اضغط لاختيار الزيت المناسب من القائمة أو اكتب اسمه بنفسك|الحدود تتغير بحسب الزيت الذي تختاره|ve|
+g_oil4|gen|زيت رابع (يختاره المستخدم)|Huile n°4 (au choix)|زيت نباتي عام — اختر نوعه|B|1|60|اضغط لاختيار الزيت المناسب من القائمة أو اكتب اسمه بنفسك|الحدود تتغير بحسب الزيت الذي تختاره|ve|
+g_but|gen|زبدة (يختارها المستخدم)|Beurre (au choix)|زبدة أو زيت صلب عام — اختر نوعه|B|2|40|اضغط لاختيار الزبدة المناسبة من القائمة أو اكتب اسمها بنفسك|الحدود تتغير بحسب الزبدة التي تختارها|ve|
+g_but2|gen|زبدة ثانية (يختارها المستخدم)|Beurre n°2 (au choix)|زبدة أو زيت صلب عام — اختر نوعه|B|2|40|اضغط لاختيار الزبدة المناسبة من القائمة أو اكتب اسمها بنفسك|الحدود تتغير بحسب الزبدة التي تختارها|ve|
+lav|ess|زيت اللافندر العطري|Huile essentielle de lavande|عطر طبيعي مهدئ|C|0.1|1|رائحة مهدئة وخواص مطهّرة|قد يسبب حساسية ويتطلب تخفيفاً|hco40,ps|
+n_col|active|كولاجين (Collagen)|Collagène|مرطب ومشدّ سطحي|C|0.5|5|يرطب ويمنح إحساس امتلاء على السطح|جزيئه كبير فلا يتغلغل ويتأثر بالحرارة|ha,gly|
+n_ela|active|إيلاستين (Elastin)|Élastine|مرطب ومرونة سطحية|C|0.5|3|يمنح مرونة وملمساً ناعماً|لا يخترق الجلد وسعره مرتفع|ha,n_col|
+n_pep|active|ببتيدات (Peptides)|Peptides|دعم تماسك البشرة|C|1|5|تخفف الخطوط الدقيقة وتدعم الجلد|حساسة للحرارة والـpH ومرتفعة الثمن|ha,pan|
+n_zpca|active|زنك PCA (Zinc PCA)|Zinc PCA|ضبط الدهون|C|0.5|2|يخفف اللمعان وانسداد المسام|قد يترسب مع الحموض القوية|nia|
+n_sha|hum|هيالورونات الصوديوم (Sodium Hyaluronate)|Hyaluronate de sodium|مرطب مسحوق|A|0.1|1|الصورة المسحوقة للهيالورونيك وترطب بقوة|يتكتل إن لم يُنثر ببطء ويلزمه حافظ|gly,pan,nia|
+n_dso|oil|زيت نوى التمر (Date Seed Oil)|Huile de noyau de datte|زيت مرطب ومضاد أكسدة|B|1|20|خفيف وغني بمضادات الأكسدة ومحلي في الجزائر|لونه داكن ورائحته مميزة|jo,ve|
+n_aloe|water|مستخلص الألوفيرا (Aloe Vera Extract)|Extrait d’aloe vera|مهدئ مائي|A|1|10|مهدئ ومرطب|أقل تركيزاً من الجل|pan,gly|
+n_rosx|herb|مستخلص إكليل الجبل (Rosemary Extract)|Extrait de romarin|مضاد أكسدة|C|0.5|3|يحمي الزيوت من التزنخ ويهدئ فروة الرأس|قد يحسّس بعض البشرات|ve|
+n_cham|herb|مستخلص البابونج (Chamomile Extract)|Extrait de camomille|مهدئ|A|0.5|5|يهدئ الاحمرار والتهيج|قد يحسّس من لديه حساسية الفصيلة المركبة|bis,pan|
+n_lic|herb|مستخلص عرق السوس (Licorice Extract)|Extrait de réglisse|مفتح ومهدئ|A|0.2|2|يفتح البقع ويهدئ الجلد|قد يغيّر لون المنتج|nia,arb|
+n_vita|active|فيتامين A (Retinyl Palmitate)|Vitamine A (palmitate de rétinyle)|تجديد لطيف|B|0.1|1|أخف على الجلد من الريتينول|فعاليته أضعف ويتأكسد|ve|
+n_vitf|emol|فيتامين F (أحماض دهنية أساسية)|Vitamine F (acides gras essentiels)|ترميم حاجز البشرة|B|0.5|5|يقوّي حاجز الجلد ويقلل الجفاف|يتزنخ بسرعة|ve,cer|
+n_bio|active|بيوتين (Biotin)|Biotine|فيتامين B7 للشعر|C|0.1|1|شائع في منتجات الشعر والأظافر|الدليل على فعاليته الموضعية محدود|pan|
+n_ker|active|كيراتين (Keratin)|Kératine|ترميم الشعر|C|1|10|يملأ الشعر التالف ويمنحه لمعاناً|قد يتراكم فيصبح الشعر قاسياً|pan,ghpc|
+n_hwp|active|بروتين القمح المتحلل (Hydrolyzed Wheat Protein)|Protéine de blé hydrolysée|مقوٍّ ومرطب للشعر|A|0.5|5|يقوّي الشعر ويرطبه|يحوي غلوتين فلا يناسب الحساسية منه|pan,gly|
+n_hsp|active|بروتين الحرير المتحلل (Hydrolyzed Silk Protein)|Protéine de soie hydrolysée|نعومة ولمعان|A|0.5|3|يمنح نعومة ولمعاناً|سعره أعلى من غيره|pan|
+n_bet|hum|بيتايين (Betaine)|Bétaïne|مرطب ومخفف للتهيج|A|1|5|يرطب ويخفف تهيج المنظفات|الزيادة تلين القوام|gly,pca|
+n_d5|sil|سيكلوبنتاسيلوكسان (Cyclopentasiloxane)|Cyclopentasiloxane (D5)|سيليكون متطاير|B|1|10|ملمس حريري خفيف ويتبخر دون أثر|مقيَّد في أوروبا في المنتجات التي تُشطف|dim|
+n_phe|pres|فينوكسي إيثانول (Phenoxyethanol)|Phénoxyéthanol|حافظ|C|0.5|1|حافظ واسع الطيف وشائع|الحد الأقصى 1%|n_ehg,edta|
+n_ehg|pres|إيثيل هكسيل جليسرين (Ethylhexylglycerin)|Éthylhexylglycérine|معزّز للحافظ|C|0.3|1|يعزز عمل الحافظ ويلطف الملمس|وحده ليس حافظاً كاملاً|n_phe|
+n_sbz|pres|بنزوات الصوديوم (Sodium Benzoate)|Benzoate de sodium|حافظ (pH أقل من 5)|C|0.3|1|حافظ بديل مقبول|لا يعمل في pH مرتفع|n_kso,cit|
+n_kso|pres|سوربات البوتاسيوم (Potassium Sorbate)|Sorbate de potassium|حافظ مضاد للفطريات|C|0.1|0.6|يكمّل بنزوات الصوديوم ضد الفطريات|يعمل تحت pH 6 فقط|n_sbz,cit|
+n_bza|pres|كحول البنزيل (Benzyl Alcohol)|Alcool benzylique|حافظ مساعد|C|0.5|1|يساعد الحافظ ويذيب بعض المكونات|قد يحسّس بعض الناس|n_phe|
+n_naoh|ph|هيدروكسيد الصوديوم (Sodium Hydroxide)|Hydroxyde de sodium|رفع الـpH وصناعة الصابون|A|0.01|0.3|يرفع الـpH بدقة بجرعات صغيرة|كاوٍ وخطير؛ يُستعمل محلولاً مخففاً مع قفازات ونظارات||
+n_tio|pow|ثاني أكسيد التيتانيوم (Titanium Dioxide)|Dioxyde de titane|فلتر شمسي معدني ومبيّض|B|1|25|يعكس الأشعة ويعطي بياضاً وتغطية|يترك أثراً أبيض؛ استنشاق المسحوق مضر|n_zno|
+n_sls|surf|SLS (Sodium Lauryl Sulfate)|SLS (laurylsulfate de sodium)|منظف رغوي قوي|A|2|10|رغوة غزيرة وتنظيف قوي وسعر رخيص|مجفف ومهيّج للبشرة الحساسة|cab|btms
+n_cgl|surf|كوكو جلوكوسيد (Coco Glucoside)|Coco-glucoside|منظف لطيف|A|2|20|نباتي ولطيف على الجلد|رغوته خفيفة|cab,dg|
+n_lgl|surf|لوريل جلوكوسيد (Lauryl Glucoside)|Lauryl glucoside|منظف لطيف|A|2|15|رغوة أفضل من الديسيل جلوكوسيد|قد يخفف القوام|cab|
+n_dls|surf|ديصوديوم لوريث سلفوسكسينات (Disodium Laureth Sulfosuccinate)|Disodium laureth sulfosuccinate|منظف لطيف رغوي|A|3|15|لطيف ورغوي ويخفف قسوة SLES|يخفف القوام|cab,sles|
+n_slsar|surf|سوديوم لوروويل ساركوسينات (Sodium Lauroyl Sarcosinate)|Lauroyl sarcosinate de sodium|منظف رغوي لطيف|A|2|10|رغوة كريمية ولطيف|حساس للـpH وقد يخفف القوام|cab|
+n_cde|surf|كوكاميد DEA (Cocamide DEA)|Cocamide DEA|مكثف ومثبّت رغوة|A|1|5|يكثف ويثبّت الرغوة|مثير للجدل ومقيّد في بعض الأسواق|cab,sles|
+n_cme|surf|كوكاميد MEA (Cocamide MEA)|Cocamide MEA|مكثف ومثبّت رغوة|A|1|4|يكثف ويثبّت الرغوة|قد يهيّج بعض البشرات|cab,sles|
+n_pgc|emol|PEG-7 غليسريل كوكوات (PEG-7 Glyceryl Cocoate)|PEG-7 glyceryl cocoate|مليّن وملطّف للمنظفات|A|0.5|5|يلطف المنظفات ويضيف ترطيباً|الزيادة تخفف القوام|cab,dg|
+n_p20|emu|بولي سوربات 20 (Polysorbate 20)|Polysorbate 20|مذيب للعطور|A|0.5|5|يذيب الزيوت العطرية في الماء|قد يهيّج عند الزيادة|eo,lav|
+n_p80|emu|بولي سوربات 80 (Polysorbate 80)|Polysorbate 80|مستحلب مساعد|B|0.5|5|يثبت المستحلبات والزيوت|قد يهيّج عند الزيادة|eo,lav|
+n_p100|emu|PEG-100 ستيارات (PEG-100 Stearate)|PEG-100 stearate|مستحلب مساعد|B|1|5|يثبت الكريمات مع الكحولات الدهنية|لزج عند الزيادة|gs,cet|
+n_cgs|emu|سيتيرايل جلوكوسيد (Cetearyl Glucoside)|Cetearyl glucoside|مستحلب نباتي|B|1|5|مستحلب لطيف ونباتي|يحتاج كحولاً دهنياً معه|cet,l16|
+n_cetyl|emu|سيتيل ألكوهول (Cetyl Alcohol)|Alcool cétylique|مكثف ومليّن|B|1|5|يكثف القوام ويعطي ملمساً ناعماً|الزيادة تعطي ملمساً شمعياً|ew,gs|
+n_ipp|emol|إيزوبروبيل بالميتات (Isopropyl Palmitate)|Palmitate d’isopropyle|مليّن خفيف|B|1|10|ملمس خفيف وانتشار جيد|قد يسد المسام عند الزيادة|lo,ipm|
+n_carn|wax|شمع الكارنوبا (Carnauba Wax)|Cire de carnauba|شمع نباتي صلب|B|0.5|10|يصلّب ويمنح لمعاناً|يحتاج حرارة عالية للذوبان|bw,can|
+n_mcw|wax|شمع ميكروكريستالين (Microcrystalline Wax)|Cire microcristalline|مثبّت قوام|B|1|10|يثبت القوام ويمنع التعرّق|مصدره بترولي وليس نباتياً|vas,bw|
+n_bg|hum|بيوتيلين جليكول (Butylene Glycol)|Butylène glycol|مرطب ومذيب|A|1|10|ملمس خفيف ويعزز النفاذ|قد يهيّج البشرة الحساسة|gly,pg|
+n_pen|hum|بنتيلين جليكول (Pentylene Glycol)|Pentylène glycol|مرطب ومعزز للحافظ|A|1|5|يرطب ويعزز الحافظ|سعره أعلى|gly|
+n_dpg|hum|ثنائي بروبيلين جليكول (Dipropylene Glycol)|Dipropylène glycol|مذيب للعطور ومرطب|A|1|10|يذيب العطور ويرطب|قد يهيّج الحساسة|fra|
+n_tedta|pres|EDTA رباعي الصوديوم (Tetrasodium EDTA)|EDTA tétrasodique|مخلّب للمعادن|A|0.05|0.2|يثبت اللون ويقوي الحافظ|الزيادة تهيّج|edta|
+n_hpmc|thick|هيدروكسي بروبيل ميثيل سليلوز (HPMC)|HPMC (hydroxypropylméthylcellulose)|مكثف جل|A|0.5|3|جل شفاف ثابت|يتكتل إن لم يُنثر ببطء|gly|
+n_pvp|thick|بولي فينيل بيروليدون (PVP)|PVP (polyvinylpyrrolidone)|مثبّت شعر وفيلم|A|1|5|يعطي تثبيتاً وطبقة رقيقة|يترك طبقة قاسية إن زاد|gly|
+n_pva|thick|بولي فينيل ألكوهول (PVA)|PVA (alcool polyvinylique)|ماسك قشري|A|5|15|يكوّن طبقة تُقشَّر كالماسك|يشدّ الجلد ويلتصق بالشعر الدقيق|gly|
+n_pvpva|thick|PVP/VA كوبوليمر (PVP/VA Copolymer)|Copolymère PVP/VA|مثبّت شعر|A|1|8|تثبيت يقاوم الرطوبة|يحتاج كحولاً أو ماءً كمذيب|etoh|
+n_acr|thick|أكريلات كوبوليمر (Acrylates Copolymer)|Copolymère d’acrylates|مكثف ومعلّق|A|0.5|3|يكثف المنظفات ويعلّق الجزيئات|يحتاج ضبط pH|tea|
+n_aad|thick|أمونيوم أكريلويل ديميثيل تورات/VP (Ammonium Acryloyldimethyltaurate/VP Copolymer)|Ammonium acryloyldimethyltaurate/VP|مكثف يتحمل الأملاح|A|0.5|2|يكثف رغم الأملاح والـpH المنخفض|سعره أعلى|gly|
+n_mas|pow|سيليكات المغنيسيوم والألومنيوم (Magnesium Aluminum Silicate)|Silicate d’aluminium et de magnésium|مثبّت ومكثف معدني|A|0.5|3|يثبّت المعلقات ويحسن القوام|يحتاج ترطيباً مسبقاً|xg|
+n_ben|pow|بنتونيت (Bentonite)|Bentonite|طين ماص|A|3|30|يمتص الدهون والشوائب|يتكتل ويجفف|kao,gly|
+n_talc|pow|تالك (Talc)|Talc|بودرة ماصة|B|5|60|ينعّم الملمس ويمتص الرطوبة|استنشاقه ضار ويلزم التأكد من نقائه|cs|
+n_mica|pow|ميكا (Mica)|Mica|لمعان ولون|B|1|20|لمعان طبيعي|استنشاق المسحوق مضر|n_tio|
+n_sil|pow|سيليكا (Silica)|Silice|ماص ومخفِّف للمعان|B|1|10|يمتص الزيوت ويمنح ملمساً ناعماً|استنشاق المسحوق مضر|cs|
+n_greenc|pow|طين أخضر (Green Clay)|Argile verte|طين منقٍّ|A|5|40|يمتص الدهون وينقي المسام ومتوفر محلياً|قد يجفف البشرة الحساسة|alo,gly,hon|
+n_redc|pow|طين أحمر (Red Clay)|Argile rouge|طين مهدئ|A|5|40|مناسب للبشرة الحساسة والمحمرّة|يصبغ الأواني والمناشف|alo,gly|
+n_pinkc|pow|طين وردي (Pink Clay)|Argile rose|طين لطيف|A|5|40|من ألطف الأطيان للبشرة الحساسة|سعره أعلى|alo,gly|
+n_charc|pow|فحم نشط (Activated Charcoal)|Charbon actif|ماص ومنقٍّ|A|0.5|5|يمتص الشوائب والدهون|يصبغ الأحواض ويجفف|kao,gly|
+n_alum|active|شب (Alum)|Alun|مزيل روائح وقابض|A|1|10|مضاد روائح طبيعي ومتوفر|قد يهيّج الجلد المخدوش|gly|
+n_sea|pow|ملح البحر (Sea Salt)|Sel marin|مقشر|C|10|60|مقشر غني بالمعادن|قاسٍ ولا يناسب الوجه|g_oil|
+n_eps|pow|ملح إبسوم (Epsom Salt)|Sel d’Epsom|للاسترخاء|C|10|60|يريح العضلات في الاستحمام|قد يجفف الجلد|bk|
+n_dead|pow|ملح البحر الميت (Dead Sea Salt)|Sel de la mer Morte|للجسم والاستحمام|C|10|60|غني بالمعادن|يجفف ويلسع الجلد المجروح|g_oil|
+n_zno|pow|أكسيد الزنك (Zinc Oxide)|Oxyde de zinc|حامٍ ومهدئ|B|3|25|فلتر شمسي معدني ومهدئ للتسلخات|يترك أثراً أبيض|n_tio,vas|
+n_cala|pow|كالامين (Calamine)|Calamine|مهدئ للحكة|B|1|15|يهدئ الحكة والتهيج|يجف على الجلد|n_zno|
+n_hen|herb|حناء (Henna)|Henné|مقوٍّ وصبغ للشعر|A|10|60|يقوّي الشعر ويلوّنه طبيعياً|يجفف الشعر ويصبغ|alo,hon|
+n_sidr|herb|سدر (Sidr)|Sidr (jujubier)|منظف شعر طبيعي|A|5|40|ينظف الشعر ويقوّيه|قد يجفف الفروة|n_hen,alo|
+n_turm|herb|كركم (Turmeric)|Curcuma|مضاد التهاب ومفتح|A|0.5|5|مضاد التهاب وإشراقة|يصبغ البشرة والملابس|hon|
+n_cin|herb|قرفة (Cinnamon)|Cannelle|منشّط|A|0.2|2|عطرية ومنشّطة للدورة|مهيّجة جداً للجلد|hon|
+n_clv|herb|قرنفل مطحون (Clove Powder)|Clou de girofle (poudre)|مطهّر|A|0.1|1|مطهّر وعطري|مهيّج جداً فيُستعمل بكميات ضئيلة|hon|
+n_fen|herb|حلبة (Fenugreek Powder)|Fenugreek (poudre)|مغذٍّ للشعر|A|2|20|تقوية الشعر وتكثيفه تقليدياً|رائحة قوية|n_flax|
+n_flax|herb|جل بذور الكتان (Flaxseed Gel)|Gel de graines de lin|مثبّت شعر طبيعي|A|10|60|يرطب ويحدد تجعيد الشعر|يفسد بسرعة ويحتاج حافظاً|gly|
+n_hib|herb|كركديه (Hibiscus)|Hibiscus|مقوٍّ وملوّن|A|1|10|يقوّي الشعر ويلوّنه خفيفاً|يصبغ|rw|
+n_rosep|herb|مسحوق الورد البلدي (Rose Powder)|Poudre de rose|مهدئ وعطري|A|1|10|مهدئ وعطر لطيف|يلوّن قليلاً|rw|
+n_ging|herb|زنجبيل (Ginger)|Gingembre|منشّط لفروة الرأس|A|0.5|5|ينشّط الدورة الدموية|مهيّج للحساسة|hon|
+n_pom|herb|قشر الرمان (Pomegranate Peel)|Écorce de grenade|قابض ومضاد أكسدة|A|1|10|غني بالتانينات ومضادات الأكسدة|يصبغ|gt|
+n_matcha|herb|ماتشا / مسحوق الشاي الأخضر (Matcha)|Matcha|مضاد أكسدة|A|0.5|5|مضاد أكسدة ويهدئ|يلوّن المنتج بالأخضر|gt|
+n_cof|pow|بن مطحون (Coffee Grounds)|Marc de café|مقشر ومنشّط|A|5|30|مقشر ومنشّط للجسم|يخدش الوجه|sug|
+n_coco|pow|مسحوق الكاكاو (Cocoa Powder)|Poudre de cacao|مضاد أكسدة ولون|A|2|20|رائحة محببة ولون طبيعي|يصبغ|hon|
+n_rice|pow|مسحوق الأرز (Rice Powder)|Poudre de riz|مفتح ومقشر لطيف|A|5|30|يهدئ ويفتح البشرة|يتكتل مع الماء|hon|
+n_bran|pow|نخالة القمح أو الأرز (Bran)|Son de blé ou de riz|مقشر لطيف|A|5|30|مقشر لطيف ومغذٍّ|يتعفن إن بقي رطباً|hon|
+n_saf|herb|زعفران (Saffron)|Safran|إشراقة وتفتيح|A|0.05|0.5|يمنح إشراقاً للبشرة|غالٍ جداً وكثيراً ما يُغَشّ|hon,rw|
+n_aloep|herb|مسحوق الألوفيرا (Aloe Powder)|Poudre d’aloe vera|مهدئ مركّز|A|0.5|5|مركّز ويُخزَّن طويلاً|يحتاج ذوباناً وترطيباً|alo|
+n_mast|herb|مصطكي (Mastic)|Mastic|راتنج عطري ومطهّر|B|0.5|5|مضاد للبكتيريا ومعروف محلياً|راتنج لزج يصعب إذابته|bw|
+n_fran|herb|لبان ذكر (Frankincense Resin)|Oliban (résine)|راتنج مهدئ|B|0.5|5|مهدئ ومجدد تقليدياً|رائحته قوية|bw|
+n_arab|thick|صمغ عربي (Gum Arabic)|Gomme arabique|مثبّت ومكثف طبيعي|A|1|10|مثبّت ومستحلب طبيعي|يتغير مع الوقت ويحتاج حافظاً|gly|
+n_camph|active|كافور (Camphor)|Camphre|منعش ومطهّر|C|0.1|1|إحساس منعش ومطهّر|سام بجرعات عالية ولا يناسب الأطفال والحوامل|mnt|
+n_milk|pow|مسحوق الحليب (Milk Powder)|Lait en poudre|ملطّف ومفتح|A|2|20|يلطف ويرطب|يفسد ويحتاج حافظاً|hon|
+n_prop|active|بروبوليس (Propolis)|Propolis|مضاد ميكروبات|C|0.5|5|مطهّر ومفيد للحبوب|يحسّس من لديهم حساسية النحل|hon|
+n_rj|active|غذاء ملكات النحل (Royal Jelly)|Gelée royale|مغذٍّ|C|0.5|3|مغذٍّ للبشرة والشعر|غالٍ ويفسد بسرعة|hon|
+n_bsug|pow|سكر بني (Brown Sugar)|Sucre roux|مقشر|C|10|60|مقشر ألطف من الأبيض|يذوب مع الماء|g_oil|
+n_hydl|water|ماء اللافندر (Lavender Hydrosol)|Hydrolat de lavande|ماء عطري|A|5|50|منعش ومهدئ|يحتاج حافظاً|rw|
+n_hydm|water|ماء النعناع (Mint Hydrosol)|Hydrolat de menthe|ماء عطري|A|5|50|منعش|يحتاج حافظاً|rw|
+n_hydr|water|ماء إكليل الجبل (Rosemary Hydrosol)|Hydrolat de romarin|ماء عطري للشعر|A|5|50|ينشّط فروة الرأس|يحتاج حافظاً|rw|
+n_hydw|water|ماء الشيح (Wormwood Hydrosol)|Hydrolat d’armoise|ماء عطري|A|5|50|يُستعمل تقليدياً|يحتاج حافظاً|rw|
+n_acv|ph|خل التفاح (Apple Cider Vinegar)|Vinaigre de cidre|ضبط pH وشطف للشعر|A|1|10|يضبط الحموضة ويلمّع الشعر|رائحة ومهيّج بتركيز عالٍ||
+n_bsoap|surf|صابون أسود بلدي (Savon Beldi)|Savon noir|منظف تقليدي|A|5|60|منظف ومقشر تقليدي|قلوي وقد يجفف|gh,gly|
+n_msoap|surf|صابون مرسيليا مبشور|Savon de Marseille (râpé)|قاعدة صابون سائل|A|5|30|لطيف ومتوفر|قلوي|gly|
+n_mpb|surf|قاعدة صابون جليسرين (Melt and Pour)|Base de savon glycérine|قاعدة صابون جاهزة|B|50|100|جاهزة وسهلة الاستعمال|لا تُخلط بالماء الكثير|gly|
+n_soyw|wax|شمع الصويا (Soy Wax)|Cire de soja|شمع نباتي|B|5|40|نباتي وليّن|ناعم فلا يثبّت وحده|bw|
+n_ipa|other|كحول إيزوبروبيل (Isopropyl Alcohol)|Alcool isopropylique|مطهّر|A|30|70|مطهّر فعّال|سام عند الابتلاع ويجفف||
+n_avob|butter|زبدة الأفوكادو (Avocado Butter)|Beurre d’avocat|زبدة مغذية|B|2|40|غنية ومرطبة|رائحتها خفيفة ولونها أخضر|shea,ve|
+n_ghee|butter|سمن بلدي (Ghee)|Ghee|مرطب تقليدي|B|2|40|مرطب شعبي ومتوفر|رائحة وقد يتزنخ|bw|
+n_ora|herb|قشر البرتقال المجفف (Orange Peel)|Écorce d’orange séchée|مفتح وعطري|A|1|10|غني بفيتامين C ورائحة لطيفة|قد يحسّس ويصبغ|hon|
+n_rwat|water|ماء الأرز (Rice Water)|Eau de riz|مقوٍّ للشعر|A|10|80|شائع لتقوية الشعر ولمعانه|يتخمّر بسرعة ويحتاج حافظاً|gly|
+n_fenoil|oil|زيت الحلبة (Fenugreek Oil)|Huile de fenugrec|زيت مغذٍّ للشعر|B|1|20|يقوّي الشعر تقليدياً|رائحة قوية|jo,ve|
+n_lau|oil|زيت الغار (Laurel Oil)|Huile de laurier|زيت علاجي تقليدي|B|1|20|مغذٍّ ومعروف في صابون الغار|رائحة قوية وقد يهيّج|oli,ve|
+n_flo|oil|زيت الكتان (Flaxseed Oil)|Huile de lin|زيت غني بأوميغا 3|B|1|15|غني بالأحماض الدهنية|يتزنخ بسرعة ويلزم حفظه بارداً|ve|
+n_gse|oil|زيت بذور العنب (Grape Seed Oil)|Huile de pépins de raisin|زيت خفيف|B|2|40|خفيف وسريع الامتصاص|يتزنخ بسرعة|ve|
+n_avo|oil|زيت الأفوكادو (Avocado Oil)|Huile d’avocat|زيت مغذٍّ|B|2|40|غني ومغذٍّ للجلد الجاف|ثقيل نسبياً|ve,shea|
+n_roc|oil|زيت الجرجير (Rocket Seed Oil)|Huile de roquette|زيت للشعر|B|1|20|شائع لتقوية الشعر في الجزائر|رائحة قوية|ve,jo|
+n_pum|oil|زيت بذور القرع (Pumpkin Seed Oil)|Huile de pépins de courge|زيت مغذٍّ|B|1|20|غني بالزنك وفيتامين E|لونه داكن ويتزنخ|ve|
+n_carro|oil|زيت الجزر (Carrot Oil)|Huile de carotte|زيت ملوّن|B|1|20|غني بالكاروتين ويمنح لوناً دافئاً|يصبغ|ve|
+n_bcas|oil|زيت الخروع الأسود (Black Castor Oil)|Huile de ricin noire|زيت كثيف للشعر|B|3|60|كثيف ومقوٍّ للشعر والحواجب|لزج ورائحته مميزة|ve|
+n_corn|oil|زيت الذرة (Corn Oil)|Huile de maïs|زيت رخيص|B|2|40|رخيص ومتوفر|ثقيل وقد يسد المسام|ve|
+n_pea|oil|زيت الفول السوداني (Peanut Oil)|Huile d’arachide|زيت مغذٍّ|B|2|40|مغذٍّ ومتوفر|محسّس لمن لديهم حساسية الفول السوداني|ve|
+n_cano|oil|زيت الكانولا (Canola Oil)|Huile de colza|زيت رخيص|B|2|40|رخيص ومتوفر|يتزنخ ولا يتميز بخواص خاصة|ve|
+n_soy|oil|زيت الصويا (Soybean Oil)|Huile de soja|زيت رخيص|B|2|40|رخيص وغني بفيتامين E|قد يتزنخ ويحسّس بعضهم|ve|
+n_palm|oil|زيت النخيل (Palm Oil)|Huile de palme|زيت شبه صلب|B|2|40|يثبت القوام وثابت|لمخاوف بيئية|bw,shea|
+n_wal|oil|زيت الجوز (Walnut Oil)|Huile de noix|زيت مغذٍّ|B|1|30|غني بأوميغا 3|يتزنخ ولا يناسب حساسية المكسرات|ve|
+n_haz|oil|زيت البندق (Hazelnut Oil)|Huile de noisette|زيت قابض خفيف|B|2|40|يمتص بسرعة ويناسب الدهنية|لا يناسب حساسية المكسرات|ve|
+n_apr|oil|زيت نوى المشمش (Apricot Kernel Oil)|Huile de noyau d’abricot|زيت ناعم|B|2|40|ناعم وسريع الامتصاص|لا يناسب حساسية المكسرات|ve|
+n_bal|oil|زيت اللوز المر (Bitter Almond Oil)|Huile d’amande amère|زيت تقليدي|B|1|20|مستعمل تقليدياً للشعر والبشرة|يلزم الحذر؛ لا يُستعمل للأطفال|ve|
+n_saff|oil|زيت القرطم (Safflower Oil)|Huile de carthame|زيت خفيف|B|2|40|خفيف وغني بحمض اللينوليك|يتزنخ|ve|
+n_calo|oil|زيت الأقحوان (Calendula Oil)|Huile de calendula|منقوع مهدئ|B|1|30|مهدئ ومرمم|قد يحسّس الفصيلة المركبة|ve,jo|
+n_chamo|oil|زيت البابونج المنقوع|Huile de camomille (macérat)|منقوع مهدئ|B|1|30|مهدئ للبشرة|قد يحسّس الفصيلة المركبة|ve,jo|
+n_roseo|oil|زيت الورد المنقوع|Huile de rose (macérat)|منقوع عطري|B|1|30|رائحة لطيفة ومرطب|يفسد إن دخله الماء|ve,jo|
+n_heno|oil|زيت الحناء المنقوع|Huile de henné (macérat)|منقوع للشعر|B|1|30|مغذٍّ للشعر|قد يصبغ|ve|
+n_garo|oil|زيت الثوم المنقوع|Huile d’ail (macérat)|منقوع للشعر|B|0.5|10|يستعمل تقليدياً للفروة|رائحة قوية ومهيّج|ve|
+n_onio|oil|زيت البصل المنقوع|Huile d’oignon (macérat)|منقوع للشعر|B|0.5|10|يستعمل تقليدياً للشعر|رائحة قوية ومهيّج|ve|
+n_turo|oil|زيت الكركم المنقوع|Huile de curcuma (macérat)|منقوع مضاد التهاب|B|1|20|مضاد التهاب|يصبغ الجلد والملابس|ve|
+n_pomo|oil|زيت بذور الرمان (Pomegranate Seed Oil)|Huile de pépins de grenade|زيت مجدد|B|0.5|10|غني بمضادات الأكسدة|غالٍ ويتزنخ|ve|
+n_mac|oil|زيت المكاداميا (Macadamia Oil)|Huile de macadamia|زيت مغذٍّ|B|2|40|ناعم ومرطب وشبيه بدهن الجلد|سعره مرتفع|ve|
+n_sido|oil|زيت السدر|Huile de sidr|زيت شعر تقليدي|B|1|20|تقليدي لتقوية الشعر|رائحة مميزة|ve|
+n_pino|oil|زيت بذور الصنوبر (Pine Nut Oil)|Huile de pignon|زيت نادر|B|1|20|مغذٍّ|غالٍ ويتزنخ|ve|
+n_gtso|oil|زيت بذور الشاي الأخضر (Green Tea Seed Oil)|Huile de graines de thé vert|زيت خفيف|B|1|20|خفيف ومضاد أكسدة|سعره مرتفع|ve|
+n_thy|ess|زيت الزعتر العطري (Thyme)|Huile essentielle de thym|مطهّر قوي|C|0.1|0.5|مضاد للبكتيريا والفطريات|مهيّج جداً ولا يناسب الحوامل والأطفال|hco40,ps|
+n_wor|ess|زيت الشيح العطري (Wormwood)|Huile essentielle d’armoise|مطهّر|C|0.05|0.3|يُستعمل تقليدياً في الجزائر|يحوي الثوجون وهو سام بجرعات عالية؛ لا يناسب الحوامل|hco40,ps|
+n_clo|ess|زيت القرنفل العطري (Clove)|Huile essentielle de clou de girofle|مطهّر ومخدّر موضعي|C|0.05|0.3|مطهّر ومسكّن موضعي|مهيّج ومحسّس بقوة|hco40,ps|
+n_bas|ess|زيت الريحان العطري (Basil)|Huile essentielle de basilic|عطر ومنعش|C|0.1|0.5|رائحة منعشة|لا يناسب الحوامل|hco40,ps|
+n_lem|ess|زيت الليمون العطري (Lemon)|Huile essentielle de citron|عطر منعش|C|0.1|1|رائحة منعشة وخواص مطهّرة|يزيد الحساسية للشمس|hco40,ps|
+n_oran|ess|زيت البرتقال العطري (Orange)|Huile essentielle d’orange|عطر منعش|C|0.1|1|رائحة محببة ومنعشة|قصير الثبات وقد يحسّس مع الشمس|hco40,ps|
+n_rose|ess|زيت الورد العطري (Rose)|Huile essentielle de rose|عطر فاخر|C|0.05|0.5|رائحة فاخرة ومهدئة|غالٍ جداً وكثير من المعروض مغشوش|hco40,ps|
+n_ger|ess|زيت الجيرانيوم العطري (Geranium)|Huile essentielle de géranium|عطر متوازن|C|0.1|1|رائحة وردية ويوازن الدهون|قد يحسّس بعض البشرات|hco40,ps|
+n_chae|ess|زيت البابونج العطري (Chamomile)|Huile essentielle de camomille|عطر مهدئ|C|0.05|0.5|مهدئ ورائحته لطيفة|غالٍ ويحسّس الفصيلة المركبة|hco40,ps|
+n_san|ess|زيت الصندل العطري (Sandalwood)|Huile essentielle de santal|عطر دافئ|C|0.1|0.5|رائحة دافئة وثابتة|غالٍ جداً وكثير منه مغشوش|hco40,ps|
+n_sag|ess|زيت المرمرية العطري (Sage)|Huile essentielle de sauge|عطر ومطهّر|C|0.05|0.3|يقلل التعرق والدهون|يحوي الثوجون؛ لا يناسب الحوامل والصرع|hco40,ps|
+n_jun|ess|زيت العرعر العطري (Juniper)|Huile essentielle de genévrier|عطر ومنقٍّ|C|0.1|0.5|رائحة نقية وقابض|لا يناسب الحوامل|hco40,ps|
+n_frae|ess|زيت اللبان العطري (Frankincense)|Huile essentielle d’oliban|عطر مهدئ|C|0.1|0.5|مهدئ ومجدد|سعره مرتفع|hco40,ps|
+n_camo|ess|زيت الكافور العطري (Camphor)|Huile essentielle de camphre|منعش ومسكّن|C|0.05|0.3|منعش ومسكّن للحكة|سام بجرعات عالية؛ لا يناسب الأطفال والحوامل|hco40,ps|
+n_cinn|ess|زيت القرفة العطري (Cinnamon)|Huile essentielle de cannelle|عطر دافئ|C|0.02|0.2|رائحة دافئة ومنشّطة|مهيّج جداً للجلد؛ كمية ضئيلة جداً|hco40,ps|
+n_gin|ess|زيت الزنجبيل العطري (Ginger)|Huile essentielle de gingembre|عطر منشّط|C|0.1|0.5|رائحة دافئة ومنشّطة|قد يهيّج ويزيد حساسية الشمس|hco40,ps|
+n_yla|ess|زيت الإيلانغ إيلانغ العطري (Ylang Ylang)|Huile essentielle d’ylang-ylang|عطر زهري|C|0.1|0.5|رائحة زهرية ثقيلة|قوي وقد يسبب صداعاً|hco40,ps|
+n_myr|ess|زيت المرّ العطري (Myrrh)|Huile essentielle de myrrhe|عطر ومهدئ|C|0.1|0.5|مهدئ ويستعمل تقليدياً|رائحة قوية وسعره مرتفع|hco40,ps|
+n_ced|ess|زيت الأرز العطري (Cedarwood)|Huile essentielle de cèdre|عطر خشبي|C|0.1|0.5|رائحة خشبية ومنقٍّ للفروة|لا يناسب الحوامل|hco40,ps|
+`;
+NEWI.trim().split("\n").forEach(l=>{const a=l.split("|");I[a[0]]={id:a[0],cat:a[1],n:a[2],f:a[4],ph:a[5],min:+a[6],max:+a[7],pr:a[8],co:a[9],g:a[10]?a[10].split(","):[],b:a[11]?a[11].split(","):[]};FRN.push([a[2],a[3]])});
+
+const CATL={gen:"عام — يختاره المستخدم",mine:"مكوّناتي",oil:"زيوت نباتية",butter:"زبدات",ess:"زيوت عطرية",emol:"ملينات ومرطبات دهنية",wax:"شموع",water:"مائيات وهيدرولات",hum:"مرطبات",active:"مواد فعالة",emu:"مستحلبات وكحولات دهنية",thick:"مكثفات وبوليمرات",surf:"منظفات",pres:"حافظات ومخلّبات",ph:"ضبط الحموضة",pow:"مساحيق وأطيان",herb:"أعشاب ومستخلصات",sil:"سيليكونات",other:"أخرى"};
+const CM={water:"w,rw,ob",hum:"gly,ha,ur,ppd,pca,pg",active:"nia,pan,ve,ala,vc,ret,sal,caf,la,ga,cer,bak,aza,tra,ko,arb,bis,mnt",oil:"jo,alm,coc,cas,oli,ros,arg,sq,sun,nig,pri,ses",butter:"shea,cb,mg",wax:"bw,can",emu:"ew,cet,btms,gs,ln,lo,l14,l16,l18,l22,le,lw,lsx,hco40,eb2,ps,stear,ghpc",emol:"cct,vas,pa,lan,ipm",sil:"dim",pres:"pre,sb,cosg,edta,mp",ph:"cit,tea,ca",surf:"cab,dg,sci,sles",thick:"xg,hec,cbm,nacl",pow:"kao,sug,bk,cs,gh",herb:"alo,gt,ce,oat,hon",ess:"tt,pm,rosem,euc",gen:"eo,fra",other:"etoh"};
+Object.entries(CM).forEach(([c,t])=>t.split(",").forEach(id=>{if(I[id])I[id].cat=c}));
+const GEN={g_oil:"oil",g_oil2:"oil",g_oil3:"oil",g_oil4:"oil",g_but:"butter",g_but2:"butter",eo:"ess",fra:"fra"};
+const PICK={oil:["oil"],butter:["butter","emol"],ess:["ess"],fra:["fra"]};
+const CH={oil:"اختر الزيت",butter:"اختر الزبدة",ess:"اختر الزيت العطري",fra:"اكتب اسم العطر"};
+const DEF={oil:["B",1,60],butter:["B",2,40],ess:["C",0.1,1],fra:["C",1,25],water:["A",5,50],active:["C",0.5,5],other:["C",0.5,10]};
+const clean=s=>String(s||"").replace(/[<>&"'`$\\|]/g,"").trim().slice(0,60);
+function saveU(){try{localStorage.setItem("dobvi_u",JSON.stringify(Object.values(I).filter(i=>i.u)))}catch(_){}}
+function loadU(){try{(JSON.parse(localStorage.getItem("dobvi_u")||"[]")||[]).forEach(i=>{const n=clean(i&&i.n);if(!n||!i.id||!/^u[a-z0-9]+$/.test(i.id)||I[i.id])return;const d=DEF[i.cat]||DEF.other;I[i.id]={id:i.id,u:true,cat:DEF[i.cat]?i.cat:"other",n,f:"مكوّن من اختيارك",ph:d[0],min:d[1],max:d[2],pr:"مكوّن أضفته أنت؛ راجع حدود استعماله وسلامته",co:"لا توجد بيانات عنه هنا؛ تحقّق من المراجع الرسمية",g:[],b:[]}})}catch(_){}}
+function newCustom(n,c){n=clean(n);if(!n)return null;const ex=Object.values(I).find(x=>x.n===n);if(ex)return ex.id;const d=DEF[c]||DEF.other,id="u"+Date.now().toString(36)+Math.floor(Math.random()*99);I[id]={id,u:true,cat:DEF[c]?c:"other",n,f:"مكوّن من اختيارك",ph:d[0],min:d[1],max:d[2],pr:"مكوّن أضفته أنت؛ راجع حدود استعماله وسلامته",co:"لا توجد بيانات عنه هنا؛ تحقّق من المراجع الرسمية",g:[],b:[]};saveU();return id}
+loadU();
+const FT=`SOLVENT|مذيب|ماء، جلسرين، بروبانديول|60-85|a|A
+VISCOSITY CONTROLLING|يضبط اللزوجة|Xanthan Gum، Carbomer، HEC|0.2-2|a|A
+GEL FORMING|يكوّن الجل|Carbomer، Sclerotium Gum|0.3-2|a|A
+BULKING|مالئ خامل|كاولين، تالك، ميكا|5-50|a|A
+SLIP MODIFIER|يحسّن الانسيابية|Silica، Nylon-12|1-10|a|B
+PLASTICISER|يلدّن البوليمرات|Triethyl Citrate، Camphor|1-5|a|B
+BINDING|رابط للمضغوطات|Magnesium Myristate، شموع|2-10|a|B
+ADHESIVE|يلصق الأسطح|Acrylates Copolymer، PVP|1-10|a|A
+OPACIFYING|يقلّل الشفافية|Glycol Distearate، TiO2|0.5-3|a|B
+PEARLESCENT|مظهر لؤلؤي|Mica، Glycol Distearate|0.5-3|a|B
+ABSORBENT|يمتص السوائل والزيوت|نشا، سيليكا، كاولين|1-10|a|A
+ANTICAKING|يمنع التكتل|Magnesium Stearate، Silica|1-5|a|A
+SURFACTANT|منشّط سطحي عام|Decyl Glucoside، Polysorbate 20|1-20|b|A
+SURFACTANT - CLEANSING|منظّف مرغٍ|SLES، Cocamidopropyl Betaine، Sodium Cocoyl Isethionate|5-20|b|A
+CLEANSING|يحافظ على نظافة الجسم|مع المنظفات السطحية|1-20|b|A
+SURFACTANT - EMULSIFYING|مستحلب|Polysorbate 60، Glyceryl Stearate، Cetearyl Olivate|2-8|b|B
+EMULSION STABILISING|يثبّت المستحلب|Cetearyl Alcohol، Cetyl Alcohol، Stearic Acid|1-5|b|B
+SURFACTANT - FOAM BOOSTING|يعزز الرغوة|Cocamide MEA، Lauramine Oxide|1-5|b|A
+SURFACTANT - HYDROTROPE|يرفع ذوبانية منشّط|Sodium Xylenesulfonate|1-3|b|A
+SURFACTANT - SOLUBILIZING|يذيب غير الذائب|Polysorbate 20، PEG-40 Hydrogenated Castor Oil|0.5-5|b|C
+SURFACTANT - DISPERSING|ينشر الصلب في السائل|Polyglyceryl-3 Polyricinoleate|1-5|b|B
+DISPERSING NON-SURFACTANT|ينشر بالامتزاز|Polyhydroxystearic Acid|1-5|b|B
+FOAMING|يحبس الهواء كرغوة|Sodium Lauroyl Sarcosinate|1-10|b|A
+ANTIFOAMING|يمنع الرغوة|Simethicone|0.01-0.1|b|C
+SURFACE MODIFIER|يغيّر سطح المكوّن|Triethoxycaprylylsilane|1-3|b|B
+SKIN CONDITIONING|يحسّن حالة البشرة|نياسيناميد، بانثينول، ببتيدات|0.1-10|c|C
+SKIN CONDITIONING - EMOLLIENT|مليّن|Caprylic/Capric Triglyceride، Squalane، جوجوبا|2-10|c|B
+SKIN CONDITIONING - HUMECTANT|يزيد ماء البشرة|جلسرين، هيالورونات، Sodium PCA|1-10|c|A
+SKIN CONDITIONING - MISCELLANEOUS|يحسّن البشرة الجافة|Allantoin، Ceramide NP|0.1-5|c|C
+SKIN CONDITIONING - OCCLUSIVE|يبطّئ تبخّر الماء|زبدة الشيا، Dimethicone، فازلين|1-30|c|B
+HUMECTANT|يحفظ رطوبة المنتج|جلسرين، سوربيتول، Propylene Glycol|1-10|c|A
+MOISTURISING|يزيد ماء البشرة|يوريا، جلسرين|1-10|c|A
+OCCLUSIVE|يمنع تبخّر الماء|زيوت، شموع، Dimethicone|1-10|c|B
+REFATTING|يعيد الدهون|Cetyl Esters، زيوت نباتية|1-5|c|B
+SKIN PROTECTING|يحمي البشرة|Zinc Oxide، Allantoin|1-10|c|C
+SMOOTHING|يخفّف الخشونة|Dimethicone، Silica|1-5|c|B
+SOOTHING|يخفّف الانزعاج|Bisabolol، Centella، شوفان|0.1-2|c|C
+ASTRINGENT|يشدّ البشرة|Witch Hazel، Zinc PCA|1-10|c|A
+TONIC|راحة للبشرة والشعر|مستخلصات نباتية|0.1-2|c|C
+REFRESHING|إحساس انتعاش|منثول، كافور|0.05-1|c|C
+EXFOLIATING|يسرّع التقشير|AHA، BHA|1-10|c|C
+KERATOLYTIC|يحلّ الطبقة القرنية|Salicylic Acid|0.5-2|c|C
+ABRASIVE|مقشر ميكانيكي|سكر، ملح، سيليكا|5-30|c|B
+BLEACHING|يفتّح|Arbutin، Kojic Acid|0.5-10|c|C
+TANNING|يسمّر|DHA|2-5|c|C
+ANTI-SEBUM|يضبط الدهون|Niacinamide، Zinc PCA|1-5|c|C
+LYTIC|يفكّك الدهون والبروتينات|Papain، Bromelain|0.1-1|c|C
+PRESERVATIVE|حافظ (الملحق V)|Phenoxyethanol، Potassium Sorbate، Sodium Benzoate|0.3-1|d|C
+ANTIMICROBIAL|يبطّئ الميكروبات|Phenoxyethanol، Sodium Benzoate|0.3-1|d|C
+ANTIOXIDANT|يمنع التزنخ|فيتامين E، مستخلص إكليل الجبل|0.1-1|d|C
+CHELATING|يرتبط بالمعادن|Disodium EDTA|0.05-0.2|d|A
+BUFFERING|يثبّت pH|Sodium Citrate|0.1-1|d|C
+pH ADJUSTERS|يضبط pH|Citric Acid، NaOH، Triethanolamine|0.05-1|d|C
+LIGHT STABILIZER|يحمي المنتج من الضوء|Benzophenone-4|0.05-0.5|d|C
+UV ABSORBER|يمتص UV لحماية المنتج|Benzophenone-3|0.05-0.5|d|C
+ANTICORROSIVE|يمنع تآكل العبوة|Sodium Benzoate|0.1-0.5|d|C
+DENATURANT|يفسد الكحول للشرب|Denatonium Benzoate|0.0001-0.01|d|C
+OXIDISING|مؤكسد|Hydrogen Peroxide|1-12|d|C
+REDUCING|مختزل|Thioglycolic Acid|1-8|d|C
+HAIR CONDITIONING|يحسّن الشعر|Behentrimonium Methosulfate، بروتينات|1-5|e|B
+DETANGLING|يفكّ التشابك|Behentrimonium Chloride|0.5-3|e|B
+ANTISTATIC|يمنع الكهرباء الساكنة|Guar Hydroxypropyltrimonium Chloride|0.5-3|e|A
+HAIR FIXING|يثبّت التسريحة|PVP، Acrylates Copolymer|1-5|e|A
+FILM FORMING|يكوّن فيلماً|PVP، Polyquaternium|1-5|e|A
+HAIR DYEING|يلوّن الشعر|أصباغ مؤكسدة|0.1-5|e|C
+HAIR WAVING OR STRAIGHTENING|تمويج أو فرد|Thioglycolate|1-11|e|C
+DEPILATORY|إزالة الشعر|Calcium Thioglycolate|2-5|e|C
+EPILATING|ينزع مع الجذر|نادر (مكوّن واحد)|0-100|e|B
+ANTI-SEBORRHEIC|ضد القشرة|Zinc Pyrithione، Piroctone Olamine|0.5-2|e|C
+EYELASH CONDITIONING|يحسّن الرموش|Panthenol، Biotinoyl Tripeptide|0.1-5|e|C
+COLORANT|ملوّن (الملحق IV)|أكاسيد الحديد، Mica|0.1-30|f|B
+UV FILTER|فلتر شمس (الملحق VI)|Zinc Oxide، TiO2، Avobenzone|3-25|f|B
+FRAGRANCE|عطر|عطر صناعي|0.1-2|f|C
+PERFUMING|مواد عطرية|زيوت عطرية|0.1-2|f|C
+DEODORANT|يقلّل الرائحة|Zinc Ricinoleate|1-2|f|C
+ANTIPERSPIRANT|يقلّل التعرّق|Aluminum Chlorohydrate|5-20|f|A
+NAIL CONDITIONING|يحسّن الأظافر|Panthenol، زيوت|0.5-5|g|C
+NAIL SCULPTING|بنية صلبة للأظافر|Acrylates|1-50|g|B
+ORAL CARE|عناية الفم|Xylitol، Cetylpyridinium Chloride|0.05-10|g|A
+ANTIPLAQUE|ضد اللويحة|Zinc Citrate|0.1-1|g|A
+FLAVOURING|نكهة|نعناع، فانيليا|0.1-1|g|C
+PROPELLANT|دافع للبخاخات|بروبان، بيوتان، DME|5-50|h|C
+NOT REPORTED|بلا وظيفة مسجّلة|—|0-100|h|C`.split("\n").map(l=>{const[en,ar,ex,d,g,ph]=l.split("|"),[mn,mx]=d.split("-").map(Number);return{en,ar,ex,mn,mx,g,ph}});
+const GN={a:"القوام والبنية",b:"المنظّفات والمستحلبات",c:"العناية بالبشرة",d:"الثبات والحفظ وpH",e:"الشعر والرموش",f:"اللون والعطر والحماية",g:"الأظافر والفم",h:"أخرى"};
+const $=s=>document.querySelector(s),esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const nz=s=>String(s||"").toLowerCase().replace(/[\u064B-\u0652ـ]/g,"").replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").replace(/جليسرين|غليسرين/g,"جلسرين").replace(/\s+/g," ").trim();
+const rf=v=>{v=nz(String(v||"").split(" — ")[0]);return v?FT.find(f=>f.en.toLowerCase()===v||nz(f.ar)===v):null};
+(()=>{let d,c=1;`#oil|B|1|40|زيت نباتي
+زيت الأركان|Argan Oil
+زيت الزيتون|Olive Oil
+زيت اللوز الحلو|Sweet Almond Oil
+زيت جوز الهند|Coconut Oil
+زيت الخروع|Castor Oil
+زيت الجوجوبا|Jojoba Oil
+زيت الأفوكادو|Avocado Oil
+زيت السمسم|Sesame Oil
+زيت دوار الشمس|Sunflower Oil
+زيت بذور العنب|Grape Seed Oil
+زيت بذور التين الشوكي|Prickly Pear Seed Oil
+زيت المشمش|Apricot Kernel Oil
+زيت جنين القمح|Wheat Germ Oil
+زيت الكتان|Flaxseed Oil
+زيت الحبة السوداء|Black Seed Oil
+زيت بذور الرمان|Pomegranate Seed Oil
+زيت المورينغا|Moringa Oil
+زيت المكاديميا|Macadamia Oil
+زيت البندق|Hazelnut Oil
+زيت الجوز|Walnut Oil
+زيت القطن|Cottonseed Oil
+زيت الصويا|Soybean Oil
+زيت بذور القرع|Pumpkin Seed Oil
+زيت القنب التجميلي|Hemp Seed Oil
+زيت الورد البري|Rosehip Oil
+زيت النيم|Neem Oil
+زيت الباوباب|Baobab Oil
+زيت النخيل|Palm Oil
+زيت النخيل الأحمر|Red Palm Oil
+زيت نخالة الأرز|Rice Bran Oil
+#butter|B|1|30|زبدة أو شمع أو مادة دهنية
+زبدة الشيا|Shea Butter
+زبدة الكاكاو|Cocoa Butter
+زبدة المانجو|Mango Butter
+زبدة الأفوكادو|Avocado Butter
+شمع العسل|Beeswax
+شمع الكرنوبا|Carnauba Wax
+شمع الكاندليلا|Candelilla Wax
+شمع الأرز|Rice Bran Wax
+كحول سيتيل|Cetyl Alcohol
+كحول ستياريل|Stearyl Alcohol
+كحول سيتوستياريل|Cetearyl Alcohol
+حمض الستياريك|Stearic Acid
+حمض البالميتيك|Palmitic Acid
+حمض الأولييك|Oleic Acid
+حمض اللوريك|Lauric Acid
+حمض الميريستيك|Myristic Acid
+سكوالان نباتي|Squalane
+زيت معدني تجميلي|Mineral Oil
+الفازلين الأبيض|Petroleum Jelly
+اللانولين|Lanolin
+#hum|A|0.1|5|مرطب أو حافظ للماء
+الغليسرين|Glycerin
+حمض الهيالورونيك|Hyaluronic Acid
+هيالورونات الصوديوم|Sodium Hyaluronate
+بروبيلين غليكول|Propylene Glycol
+بيوتيلين غليكول|Butylene Glycol
+بنتيلين غليكول|Pentylene Glycol
+بروبانديول|Propanediol
+سوربيتول|Sorbitol
+بانثينول|Panthenol
+يوريا|Urea
+بيتايين|Betaine
+صوديوم PCA|Sodium PCA
+صوديوم لاكتات|Sodium Lactate
+تريهالوز|Trehalose
+إريثريتول|Erythritol
+ألانتوين|Allantoin
+سكوالين|Squalene
+كولاجين متحلل|Hydrolyzed Collagen
+إيلاستين متحلل|Hydrolyzed Elastin
+بروتين الحرير المتحلل|Hydrolyzed Silk
+بروتين القمح المتحلل|Hydrolyzed Wheat Protein
+بروتين الأرز المتحلل|Hydrolyzed Rice Protein
+سيراميد NP|Ceramide NP
+سيراميد AP|Ceramide AP
+سيراميد EOP|Ceramide EOP
+كوليسترول تجميلي|Cholesterol
+فيتوسفينغوزين|Phytosphingosine
+إينوزيتول|Inositol
+بيتا غلوكان|Beta-Glucan
+بولي غلوتاميك أسيد|Polyglutamic Acid
+#active|C|0.1|2|فيتامين أو مضاد أكسدة
+فيتامين C|Ascorbic Acid
+فيتامين C المستقر|Sodium Ascorbyl Phosphate
+فيتامين C مشتق دهني|Ascorbyl Palmitate
+فيتامين C غلوكوزيد|Ascorbyl Glucoside
+فيتامين E|Tocopherol
+أسيتات فيتامين E|Tocopheryl Acetate
+فيتامين B3|Niacinamide
+فيتامين B7|Biotin
+فيتامين A|Retinol
+ريتينيل بالميتات|Retinyl Palmitate
+ريتينال|Retinal
+فيتامين K|Phytonadione
+حمض الفيروليك|Ferulic Acid
+حمض ألفا ليبويك|Alpha Lipoic Acid
+ريسفيراترول|Resveratrol
+كيرسيتين|Quercetin
+غلوتاثيون|Glutathione
+حمض الإيلاجيك|Ellagic Acid
+يوبيكوينون|Ubiquinone
+أستازانتين|Astaxanthin
+حمض الكافئيك|Caffeic Acid
+حمض الغاليك|Gallic Acid
+إرجوثيونين|Ergothioneine
+توكوترايينول|Tocotrienol
+#active|C|0.5|5|حمض مقشر أو مفتح
+حمض الغليكوليك|Glycolic Acid
+حمض اللاكتيك|Lactic Acid
+حمض الساليسيليك|Salicylic Acid
+حمض الماندليك|Mandelic Acid
+حمض الأزيليك|Azelaic Acid
+حمض الستريك|Citric Acid
+حمض الماليك|Malic Acid
+حمض الطرطريك|Tartaric Acid
+حمض اللاكتوبيونيك|Lactobionic Acid
+غلوكونولاكتون|Gluconolactone
+حمض الكوجيك|Kojic Acid
+حمض الترانيكساميك|Tranexamic Acid
+ألفا أربوتين|Alpha Arbutin
+بيتا أربوتين|Beta Arbutin
+بوتاسيوم أزيلويل ديغليسينات|Potassium Azeloyl Diglycinate
+حمض السكسينيك|Succinic Acid
+هيالورونيك منخفض الوزن الجزيئي|Low Molecular Weight Hyaluronic Acid
+هيالورونيك مرتفع الوزن الجزيئي|High Molecular Weight Hyaluronic Acid
+حمض الغلوكونيك|Gluconic Acid
+حمض البيروفيك|Pyruvic Acid
+حمض الفيتيك|Phytic Acid
+حمض الأوكتاديكانديويك|Octadecenedioic Acid
+حمض الأنيسيك|Anisic Acid
+#herb|A|0.5|5|مستخلص نباتي
+مستخلص الألوفيرا|Aloe Vera Extract
+مستخلص البابونج|Chamomile Extract
+مستخلص الشاي الأخضر|Green Tea Extract
+مستخلص الخيار|Cucumber Extract
+مستخلص الورد|Rose Extract
+مستخلص اللافندر|Lavender Extract
+مستخلص إكليل الجبل|Rosemary Extract
+مستخلص النعناع|Peppermint Extract
+مستخلص عرق السوس|Licorice Extract
+مستخلص الرمان|Pomegranate Extract
+مستخلص التوت|Mulberry Extract
+مستخلص العنب|Grape Extract
+مستخلص الشوفان|Oat Extract
+مستخلص الأرز|Rice Extract
+مستخلص الكركم|Turmeric Extract
+مستخلص الزنجبيل|Ginger Extract
+مستخلص القرفة|Cinnamon Extract
+مستخلص القرنفل|Clove Extract
+مستخلص الحلبة|Fenugreek Extract
+مستخلص السدر|Ziziphus Extract
+مستخلص الحناء|Henna Extract
+مستخلص الكركديه|Hibiscus Extract
+مستخلص الصبار|Cactus Extract
+مستخلص التين الشوكي|Prickly Pear Extract
+مستخلص التمر|Date Extract
+مستخلص التين|Fig Extract
+مستخلص ورق الزيتون|Olive Leaf Extract
+مستخلص بذور العنب|Grape Seed Extract
+مستخلص المورينغا|Moringa Extract
+مستخلص القراص|Nettle Extract
+مستخلص ذيل الحصان|Horsetail Extract
+مستخلص الجنكة بيلوبا|Ginkgo Biloba Extract
+مستخلص الآذريون|Calendula Extract
+مستخلص اليارو|Yarrow Extract
+مستخلص جذر الأرقطيون|Burdock Root Extract
+#emu|B|1|6|مستحلب
+أوليفيم 1000|Olivem 1000
+أوليفيم 300|Olivem 300
+سيتيريل أوليفيت|Cetearyl Olivate
+سوربيتان أوليفيت|Sorbitan Olivate
+بولي سوربات 20|Polysorbate 20
+بولي سوربات 60|Polysorbate 60
+بولي سوربات 80|Polysorbate 80
+سيتيريث 20|Ceteareth-20
+سيتيريث 25|Ceteareth-25
+جليسيريل ستيرات|Glyceryl Stearate
+جليسيريل ستيرات SE|Glyceryl Stearate SE
+بي إي جي-100 ستيارات|PEG-100 Stearate
+سيتيل بالميتات|Cetyl Palmitate
+سوربيتان ستيرات|Sorbitan Stearate
+سوربيتان أوليات|Sorbitan Oleate
+ليسيثين|Lecithin
+هيدروجينيتد ليسيثين|Hydrogenated Lecithin
+سكر ستيرات|Sucrose Stearate
+بولي غليسيريل-3 دايستيرات|Polyglyceryl-3 Diisostearate
+بولي غليسيريل-6 ديستيرات|Polyglyceryl-6 Distearate
+بولي غليسيريل-10 لورات|Polyglyceryl-10 Laurate
+ستياريث-2|Steareth-2
+ستياريث-21|Steareth-21
+مونتانوڤ 68|Montanov 68
+مونتانوڤ L|Montanov L
+#thick|A|0.1|3|مكثف أو مثبت
+كاربومير|Carbomer
+زانثان غام|Xanthan Gum
+غوار غام|Guar Gum
+هيدروكسي إيثيل سليلوز|Hydroxyethylcellulose
+كربوكسي ميثيل سليلوز|Carboxymethyl Cellulose
+صمغ الأكاسيا|Acacia Gum
+صمغ التراجاكانث|Tragacanth Gum
+صمغ السكليروتيوم|Sclerotium Gum
+ألجينات الصوديوم|Sodium Alginate
+كراساجينان|Carrageenan
+نشا الذرة|Corn Starch
+نشا الأرز|Rice Starch
+نشا التابيوكا|Tapioca Starch
+بولي أكريلات الصوديوم|Sodium Polyacrylate
+أكريلات/C10-30 ألكيل أكريلات كروس بوليمر|Acrylates/C10-30 Alkyl Acrylate Crosspolymer
+أمونيوم أكريلويل دايميثيل تورات/VP كوبوليمر|Ammonium Acryloyldimethyltaurate/VP Copolymer
+بولي أكريلاميد|Polyacrylamide
+هيدروكسي بروبيل ميثيل سليلوز|Hydroxypropyl Methylcellulose
+سليلوز ميكروكريستالين|Microcrystalline Cellulose
+سيليكا|Silica
+#surf|A|2|15|منظف أو رغوي
+صوديوم لوريث سلفات|Sodium Laureth Sulfate
+صوديوم لوريل سلفات|Sodium Lauryl Sulfate
+كوكاميدوبروبيل بيتايين|Cocamidopropyl Betaine
+ديسيل غلوكوزيد|Decyl Glucoside
+كوكو غلوكوزيد|Coco Glucoside
+لوريل غلوكوزيد|Lauryl Glucoside
+صوديوم كوكويل إيزيثيونات|Sodium Cocoyl Isethionate
+صوديوم لورويل ساركوسينات|Sodium Lauroyl Sarcosinate
+صوديوم ميثيل كوكويل تورات|Sodium Methyl Cocoyl Taurate
+ديسوديوم لوريث سلفوسكسينات|Disodium Laureth Sulfosuccinate
+صوديوم كوكويل غلوتامات|Sodium Cocoyl Glutamate
+ديسوديوم كوكويل غلوتامات|Disodium Cocoyl Glutamate
+صوديوم لوريل غلوكوز كربوكسيليت|Sodium Lauryl Glucose Carboxylate
+كوكاميد DEA|Cocamide DEA
+كوكاميد MEA|Cocamide MEA
+لوراميدوبروبيل بيتايين|Lauramidopropyl Betaine
+صوديوم لورويل ميثيل إيزيثيونات|Sodium Lauroyl Methyl Isethionate
+صوديوم كوكويل ألانينات|Sodium Cocoyl Alaninate
+صوديوم ميثيل أوليويل تورات|Sodium Methyl Oleoyl Taurate
+ميثيل كوكويل تاورات|Methyl Cocoyl Taurate
+لوريل بيتايين|Lauryl Betaine
+كوكو بيتايين|Coco-Betaine
+صوديوم كوكويل سيتريت|Sodium Cocoyl Citrate
+صوديوم لوريل سلفوأسيتيت|Sodium Lauryl Sulfoacetate
+#pres|C|0.1|1|حافظ أو مضاد ميكروبات
+فينوكسي إيثانول|Phenoxyethanol
+إيثيل هكسيل غليسرين|Ethylhexylglycerin
+بنزوات الصوديوم|Sodium Benzoate
+سوربات البوتاسيوم|Potassium Sorbate
+بنزوات البوتاسيوم|Potassium Benzoate
+ديهيدروأسيتات الصوديوم|Sodium Dehydroacetate
+حمض البنزويك|Benzoic Acid
+حمض السوربيك|Sorbic Acid
+حمض الديهيدروأسيتيك|Dehydroacetic Acid
+كحول البنزيل|Benzyl Alcohol
+كابريليل غليكول|Caprylyl Glycol
+1,2-هيكسانديول|1,2-Hexanediol
+كلورفينيسين|Chlorphenesin
+كلورهيكسيدين ديغلوكونات|Chlorhexidine Digluconate
+ديهيدروأسيتات البنزيل|Benzyl Dehydroacetate
+ميثيل بارابين|Methylparaben
+بروبيل بارابين|Propylparaben
+EDTA ثنائي الصوديوم|Disodium EDTA
+تيترا صوديوم غلوتامات داي أسيتات|Tetrasodium Glutamate Diacetate
+حمض الإيثيلين ديامين رباعي الأسيتيك|EDTA
+#ess|C|0.05|1|زيت عطري
+زيت اللافندر العطري|Lavender Essential Oil
+زيت النعناع العطري|Peppermint Essential Oil
+زيت شجرة الشاي|Tea Tree Oil
+زيت إكليل الجبل العطري|Rosemary Essential Oil
+زيت الليمون العطري|Lemon Essential Oil
+زيت البرتقال الحلو|Sweet Orange Essential Oil
+زيت البرغموت|Bergamot Essential Oil
+زيت الياسمين|Jasmine Essential Oil
+زيت الورد الدمشقي|Rose Essential Oil
+زيت خشب الصندل|Sandalwood Essential Oil
+زيت الأوكالبتوس|Eucalyptus Essential Oil
+زيت القرنفل العطري|Clove Essential Oil
+زيت القرفة العطري|Cinnamon Essential Oil
+زيت الزنجبيل العطري|Ginger Essential Oil
+زيت البابونج العطري|Chamomile Essential Oil
+زيت الإيلنغ إيلنغ|Ylang Ylang Essential Oil
+زيت خشب الأرز|Cedarwood Essential Oil
+زيت الباتشولي|Patchouli Essential Oil
+زيت اللبان|Frankincense Essential Oil
+زيت إبرة الراعي|Geranium Essential Oil
+#pow|B|1|30|لون أو معدن أو مادة خاصة
+أكسيد الحديد الأحمر|Red Iron Oxide
+أكسيد الحديد الأصفر|Yellow Iron Oxide
+أكسيد الحديد الأسود|Black Iron Oxide
+ثاني أكسيد التيتانيوم|Titanium Dioxide
+أكسيد الزنك|Zinc Oxide
+ميكا تجميلية|Cosmetic Mica
+أكسيد الكروم الأخضر|Chromium Oxide Green
+أكسيد المنغنيز البنفسجي|Manganese Violet
+ألترا مارين أزرق|Ultramarines Blue
+ألترا مارين بنفسجي|Ultramarines Violet
+كاولين|Kaolin
+بنتونيت|Bentonite
+طين الغاسول المغربي|Ghassoul Clay
+طين البحر الميت|Dead Sea Mud
+الفحم النشط|Activated Charcoal
+السيليكا المجهرية|Microsilica
+نشا الذرة المعدل|Modified Corn Starch
+بولي ميثيل ميثاكريلات|PMMA
+بولي ميثيل سيلسيسكيوكسان|Polymethylsilsesquioxane
+دايميثيكون|Dimethicone
+سيكلوبنتاسيلوكسان|Cyclopentasiloxane
+دايميثيكونول|Dimethiconol
+فينيل تريميثيكون|Phenyl Trimethicone
+ألومينا|Alumina
+كالسيوم كربونات|Calcium Carbonate`.split("\n").forEach(l=>{if(l[0]==="#"){d=l.slice(1).split("|");return}const[a,e]=l.split("|"),k=nz(e);if(Object.values(I).some(x=>nz(x.n).includes(k)))return;const id="x"+c++;I[id]={id,cat:d[0],n:a+" ("+e+")",f:d[4],ph:d[1],min:+d[2],max:+d[3],pr:"من القائمة الموسّعة؛ لا توجد بيانات تفصيلية عن مزاياه هنا",co:"لا توجد بيانات تفصيلية عن عيوبه؛ راجع ورقة المورّد وحدود اللائحة 1223/2009",g:[],b:[]}})})();
+
+const IL=Object.values(I).filter(i=>!/^g_|^(eo|fra)$/.test(i.id)).map(i=>({i,k0:nz(i.n),k:nz(i.n.replace(/\(.*\)/,"")),e:nz((i.n.match(/\(([^)]+)\)/)||["",""])[1])}));
+const fi=name=>{const n=nz(name);if(n.length<3)return null;const x=IL.find(x=>x.k0===n||x.k===n||x.e===n)||IL.find(x=>x.k.includes(n)||(x.e&&x.e.includes(n)));return x?x.i:null};
+const sg=name=>{const m=fi(name),ks=[nz(name),...(m&&m.e?[m.e]:[])].filter(k=>k.length>3);return ks.length?FT.filter(f=>nz(f.ex).split("،").some(x=>{x=x.trim();return x.length>3&&ks.some(k=>k===x||k.includes(x)||x.includes(k))})):[]};
+
+let lang="ar";
+const D=[["اكتب منتجك واختر وظيفة كل مكوّن","Write your product and choose each ingredient's function"],["مصنع وصفات مواد التجميل","Cosmetic formulation lab"],["اسم المنتج (مثال: كريم اليدين)","Product name (e.g. hand cream)"],["الدفعة (غ)","Batch (g)"],["+ إضافة مكوّن","+ Add ingredient"],["مسح الكل","Clear all"],["نسخ الوصفة","Copy recipe"],["تم النسخ","Copied"],["تعذّر النسخ","Copy failed"],["اصنع","Make"],["المجموع","Total"],["الأخطاء وطريقة تصحيحها","Errors and how to fix them"],["طريقة التحضير","Preparation method"],["جدول الوظائف (83) — اكتب اسم مكوّن لترى وظائفه، أو ابحث ثم اضغط لتطبيق وظيفة على الصف المحدّد","Functions table (83) — type an ingredient to see its functions, or search then tap to apply one to the selected row"],["اكتب اسم مكوّن واختر من الاقتراحات (مثال: جلسرين)","Type an ingredient and pick from the suggestions (e.g. glycerin)"],["الوظيفة (ابحث)","Function (search)"],["اسم المكوّن","Ingredient name"],["النسبة","Percent"],["معلومات المكوّن (مستقلة عن وصفتك)","Ingredient info (independent of your recipe)"],["معلومات المكوّن","Ingredient info"],["اقتراح:","Suggestion:"],["طبّق","Apply"],["✔ التصحيح:","✔ Fix:"],["المميزات","Pros"],["العيوب","Cons"],["وظائفه في الجدول","Its functions in the table"],["الاستعمال المعتاد","Typical use"],["القوام والبنية","Texture & structure"],["المنظّفات والمستحلبات","Cleansers & emulsifiers"],["العناية بالبشرة","Skin care"],["الثبات والحفظ وpH","Stability, preservation & pH"],["الشعر والرموش","Hair & lashes"],["اللون والعطر والحماية","Colour, fragrance & protection"],["الأظافر والفم","Nails & oral"],["أخرى","Other"],["المسجّلة في الجدول","listed in the table"],["وظائف «","Functions of «"],[" من 83"," of 83"],["أمثلة:","Examples:"],["نسبة تقريبية","Approx."],["نتائج أخرى مطابقة للنص","Other text matches"],["وظائف محتملة حسب فئته (تقدير)","Possible functions by category (estimate)"],["لا نتيجة","No result"],["ادخل","Enter"],["إغلاق","Close"],["حذف","Delete"],["الوظائف من CosIng. الأمثلة والنسب من خبرة التركيب وتقريبية. الحدود القانونية في الملاحق II–VI من اللائحة 1223/2009؛ تحقّق منها قبل أي تسويق.","Functions are from CosIng. Examples and percentages come from formulation experience and are approximate. Legal limits are in Annexes II–VI of Regulation 1223/2009; check them before marketing."],["منتجك","Your product"]].sort((a,b)=>b[0].length-a[0].length);
+function trS(v){if(lang==="en"){for(const[a,b]of D)v=v.split(a).join(b);v=v.replace(/(\d) غ/g,"$1 g")}return v}
+function trN(n){if(n.nodeType===3){if(n.__o===undefined)n.__o=n.nodeValue;const v=trS(n.__o);if(v!==n.nodeValue)n.nodeValue=v}else if(n.nodeType===1&&!/^(SCRIPT|STYLE|DATALIST)$/.test(n.tagName)){["placeholder","aria-label"].forEach(a=>{const v=n.getAttribute(a);if(v==null)return;if(n["_"+a]===undefined)n["_"+a]=v;n.setAttribute(a,trS(n["_"+a]))});n.childNodes.forEach(trN)}}
+
+let rows=[],batch=100,cur=0,FX=[],made=false;
+const fo=r=>rf(r.f),pv=r=>Math.max(0,parseFloat(r.p)||0),tot=()=>rows.reduce((s,r)=>s+pv(r),0);
+const hf=(...n)=>rows.some(r=>{const f=fo(r);return f&&n.includes(f.en)});
+const isW=r=>{const n=nz(r.n),m=fi(r.n);return /^(ماء|water|aqua)|هيدرولات|hydrosol/.test(n)||!!(m&&m.cat==="water")};
+const OF=["SKIN CONDITIONING - EMOLLIENT","SKIN CONDITIONING - OCCLUSIVE","OCCLUSIVE","REFATTING"];
+const isO=r=>{const f=fo(r),m=fi(r.n);return !!((f&&OF.includes(f.en))||(m&&["oil","butter","wax","emol"].includes(m.cat)&&!isW(r)))};
+const phs=r=>isW(r)?"A":isO(r)?"B":(fo(r)||{ph:"C"}).ph;
+const LIM=[[/phenoxyethanol|فينوكسي/,1,"فينوكسي إيثانول"],[/paraben|بارابين/,0.8,"البارابين (المجموع؛ propyl+butyl معاً 0.14%)"],[/sorbate|سوربات/,0.6,"السوربات"],[/(sodium|potassium) benzoate|بنزوات/,0.5,"البنزوات على البشرة"],[/salicylic|ساليسيليك/,2,"حمض الساليسيليك"],[/kojic|كوجيك/,1,"حمض الكوجيك"],[/retinol|ريتينول/,0.3,"الريتينول (الوجه)"],[/benzophenone-3/,6,"Benzophenone-3"],[/triclosan|تريكلوسان/,0.3,"Triclosan"],[/hydrogen peroxide|بيروكسيد/,12,"بيروكسيد الهيدروجين (4% للبشرة)"],[/pyrithione|بيريثيون/,1,"Zinc Pyrithione"],[/chlorhexidine/,0.3,"Chlorhexidine"],[/benzoic acid|حمض البنزويك/,0.5,"حمض البنزويك"]];
+const NT={"HAIR DYEING":"صبغات الشعر عالية الخطورة؛ اختبار حساسية قبل كل استعمال.","HAIR WAVING OR STRAIGHTENING":"التمويج والفرد بمواد كيميائية مقيّد بالملحق III.","DEPILATORY":"مزيلات الشعر تحرق الجلد إن زادت المدة أو النسبة.","UV FILTER":"لا تدّعِ SPF دون اختبار معملي؛ الفلتر من الملحق VI فقط.","COLORANT":"الملوّن يجب أن يكون من الملحق IV.","OXIDISING":"المؤكسدات مقيّدة بالملحق III."};
+function ty(){const W=rows.some(isW),O=rows.some(isO);return hf("SURFACTANT - CLEANSING","CLEANSING","SURFACTANT - FOAM BOOSTING","FOAMING")&&W?"cl":W&&O?"em":W?"aq":O?"an":"pw"}
+function chk(){
+ const E=[],ad=(s,t,m,h,fx)=>E.push({s,t,m,h,fx});
+ const W=rows.some(isW),O=rows.some(isO),EM=hf("SURFACTANT - EMULSIFYING"),CL=ty()==="cl";
+ if(!rows.some(r=>r.n.trim())){ad("in","ابدأ بكتابة المكوّنات","لا يوجد مكوّن بعد.","اكتب اسم المكوّن ثم اختر وظيفته.");return E}
+ rows.forEach((r,i)=>{
+  if(!r.n.trim()&&!r.f&&!r.p)return;
+  const nm=r.n.trim()||"المكوّن "+(i+1),f=fo(r),m=fi(r.n),p=pv(r);let lg=false;
+  if(!r.n.trim())ad("bad",nm+": بلا اسم","كل صف يحتاج اسم مكوّن.","اكتب اسمه (مثال: Glycerin أو جلسرين).");
+  if(!f)ad("bad",nm+": وظيفة غير محدّدة",r.f?"الوظيفة المكتوبة غير موجودة في الجدول.":"لم تختر وظيفة.","اكتب جزءاً من اسم الوظيفة أو معناها في الخانة، أو اضغط وظيفة مقترحة، أو ابحث في «جدول الوظائف».");
+  if(!(p>0))ad("bad",nm+": نسبة غير صحيحة","النسبة فارغة أو صفر.","اكتب نسبة أكبر من صفر.");
+  const nn=nz(r.n)+" "+(m?nz(m.n):"");
+  LIM.forEach(([re,mx,lb])=>{if(re.test(nn)&&p>mx){lg=true;ad("bad",nm+": يتجاوز الحد القانوني",`حد ${lb} في اللائحة 1223/2009 هو ${mx}%، وأنت كتبت ${p}%.`,`خفّضه إلى ${mx}% أو أقل وراجع الملحق المناسب.`,{set:[i,mx]})}});
+  if(/nitrite|نيتريت/.test(nn))ad("wr",nm+": مكوّن مقيّد","النيتريت عليه قيود قانونية.","تحقّق من الملاحق قبل استعماله أو استبدله.");
+  if(f&&!lg&&p>0&&!(f.en==="SOLVENT"&&isW(r))){const lo=m?m.min:f.mn,hi=m?m.max:f.mx;
+   if(p>hi)ad("wr",`${nm}: ${p}% أعلى من المعتاد`,(m?m.co:"الحدود تقريبية من خبرة التركيب")+` (المعتاد ${lo}–${hi}%).`,`خفّضه إلى ${hi}% أو أقل.`,{set:[i,hi]});
+   else if(p<lo)ad("wr",`${nm}: ${p}% أقل من المعتاد`,`أقل من الحد الفعّال (${lo}–${hi}%) فلن يظهر تأثيره.`,`ارفعه إلى ${lo}% على الأقل.`,{set:[i,lo]})}
+  const s=sg(r.n);
+  if(f&&s.length&&!s.includes(f))ad("wr",nm+": الوظيفة قد لا تناسبه",`يُصنَّف في الجدول تحت: ${s.map(x=>x.en).join("، ")}.`,"غيّر الوظيفة إن كان تصنيفك خاطئاً، أو تجاهل التنبيه إن كان استعمالك مقصوداً.")});
+ const ft=tot();
+ if(Math.abs(ft-100)>0.01)ad("bad",`المجموع ${ft.toFixed(2)}%`,ft>100?"يتجاوز 100%.":"أقل من 100%.","اجعله 100% بالضبط، عادةً بتعديل نسبة الماء.",{bal:1});
+ if(W&&!hf("PRESERVATIVE"))ad("bad","منتج مائي بلا حافظ","الماء ينمّي البكتيريا والفطريات خلال أيام.",hf("ANTIMICROBIAL")?"ANTIMICROBIAL وحدها لا تكفي؛ أضف مكوّناً بوظيفة PRESERVATIVE من الملحق V.":"أضف حافظاً (0.5–1%) في الطور C.",{add:["فينوكسي إيثانول","PRESERVATIVE","0.8"]});
+ if(W&&O&&!EM)ad("bad","ماء وزيت بلا مستحلب","سينفصل الطوران بعد وقت قصير.","أضف مكوّناً بوظيفة SURFACTANT - EMULSIFYING (2–8%).",{add:["Polysorbate 60","SURFACTANT - EMULSIFYING","3"]});
+ if(EM&&!(W&&O))ad("wr","مستحلب بلا طورين","المستحلب يلزمه ماء وزيت معاً.","أضف الطور الناقص أو احذف المستحلب.");
+ if(EM&&W&&O&&!hf("EMULSION STABILISING"))ad("wr","لا مثبّت للمستحلب","المستحلب وحده ينفصل مع الحرارة والوقت.","أضف مكوّناً بوظيفة EMULSION STABILISING (1–5%).",{add:["Cetearyl Alcohol","EMULSION STABILISING","2"]});
+ if(O&&!hf("ANTIOXIDANT"))ad("wr","زيوت بلا مضاد أكسدة","الزيوت تتزنخ وتتغير رائحتها.","أضف مضاد أكسدة (0.1–1%).",{add:["فيتامين E","ANTIOXIDANT","0.5"]});
+ if(W&&!hf("CHELATING"))ad("in","لا مخلّب للمعادن","معادن الماء تُضعف الحافظ وتغيّر اللون.","أضف Disodium EDTA بنسبة 0.1%.",{add:["Disodium EDTA","CHELATING","0.1"]});
+ const cb=rows.some(r=>/carbomer|كاربومر/.test(nz(r.n))),AC=rows.some(r=>/acid|حمض|aha|bha/.test(nz(r.n)));
+ if(cb&&!hf("pH ADJUSTERS"))ad("bad","كاربومر بلا معدّل pH","لا يتكثف الكاربومر قبل التعادل (pH 5.5–7).","أضف Triethanolamine بقطرات حتى يتكثف الجل.",{add:["Triethanolamine","pH ADJUSTERS","0.4"]});
+ else if(W&&!hf("pH ADJUSTERS","BUFFERING"))ad(AC||CL?"wr":"in","لا ضبط للـ pH","pH غير المضبوط يهيّج البشرة ويُضعف الحافظ.","اضبطه بين 4.5 و6 بحمض الستريك وقسه بشريط pH.",{add:["حمض الستريك","pH ADJUSTERS","0.1"]});
+ if(cb&&rows.some(r=>/sodium chloride|ملح|nacl/.test(nz(r.n))))ad("wr","كاربومر مع ملح","الأملاح تفكّ جل الكاربومر وتُرقّقه.","احذف الملح أو استعمل مكثّفاً يتحمل الأملاح.");
+ const cat=rows.filter(r=>/behentrimonium|btms|polyquaternium|cetrimonium|بيهنتريمونيوم/.test(nz(r.n))||(fo(r)||{}).en==="DETANGLING"),an=rows.filter(r=>/sles|sls\b|lauryl sulfate|laureth sulfate|isethionate|sarcosinate|ايزيثيونات|ساركوسينات|لوريث سلفات|لوريل سلفات/.test(nz(r.n)));
+ if(cat.length&&an.length)ad("bad","موجب الشحنة مع سالب الشحنة",`${cat[0].n} مع ${an[0].n} يترسبان ويُبطلان التأثير.`,"استبدل المنظّف السالب بـ Cocamidopropyl Betaine أو Decyl Glucoside.");
+ else{const ms=rows.map(r=>fi(r.n));ms.forEach((x,i)=>ms.forEach((y,j)=>{if(x&&y&&i<j&&x.b.includes(y.id))ad("bad",`تعارض ${x.n} مع ${y.n}`,"مسجّل في قاعدة المكوّنات أنهما لا يُخلطان.","استعمل أحدهما فقط أو افصل استعمالهما.")}))}
+ if(hf("OXIDISING")&&hf("REDUCING"))ad("bad","مؤكسد مع مختزل","يلغي أحدهما الآخر ويولّد حرارة.","افصلهما في منتجين.");
+ if(W&&hf("FRAGRANCE","PERFUMING")&&!hf("SURFACTANT - SOLUBILIZING","SURFACTANT - EMULSIFYING"))ad("wr","عطر بلا مذيب","الزيوت العطرية لا تذوب في الماء فتطفو أو تعكّر.","أضف مذيباً بنحو 3 أضعاف وزن العطر.",{add:["Polysorbate 20","SURFACTANT - SOLUBILIZING","1.5"]});
+ if(CL&&!hf("VISCOSITY CONTROLLING"))ad("in","غسول بلا مكثّف","سيخرج سائلاً جداً.","أضف ملحاً (0.5–2%) تدريجياً في آخر خطوة.",{add:["ملح الطعام","VISCOSITY CONTROLLING","0.8"]});
+ Object.keys(NT).forEach(k=>{if(hf(k))ad("in",k+": تنبيه تنظيمي",NT[k],"راجع الملحق المناسب قبل التسويق.")});
+ return E}
+const NF=r=>{const f=(fo(r)||{}).en||"",n=nz(r.n),m=fi(r.n),p=phs(r);
+ const t=/xanthan|زانثان|carbomer|كاربومر|\bhec\b|hpmc|هيدروكسي ايثيل|صمغ/.test(n)?"انثره ببطء على الجلسرين أو الماء المحرَّك ودعه 20–30 دقيقة ليتشرّب بلا تكتل"
+ :f==="PRESERVATIVE"||f==="ANTIMICROBIAL"?"أضفه تحت 40°م وحرّك جيداً"
+ :/FRAGRANCE|PERFUMING|FLAVOURING/.test(f)?"اخلطه مسبقاً بالمذيب إن وُجد ثم أضفه تحت 40°م"
+ :f==="ANTIOXIDANT"?"أضفه تحت 40°م"
+ :f==="pH ADJUSTERS"||f==="BUFFERING"?"أضفه قطرة قطرة مع قياس الـpH"
+ :f==="CHELATING"?"ذوّبه في الماء أولاً"
+ :f==="ABRASIVE"?"أضفه آخراً بعد التبريد كي لا يذوب أو يتكتل"
+ :/^SURFACTANT - (CLEANSING|FOAM)|^FOAMING/.test(f)?"أضفه ببطء مع تحريك هادئ لتفادي الرغوة"
+ :/DETANGLING|HAIR CONDITIONING/.test(f)?"أذبه في الطور الدهني مع الكحولات الدهنية عند 75°م"
+ :/UV FILTER|COLORANT|BULKING|ABSORBENT|ANTICAKING/.test(f)?"انثره بتدريج وخلط جيد حتى لا يتكتل"
+ :/EXFOLIATING|KERATOLYTIC|BLEACHING|TANNING/.test(f)?"أضفه تحت 40°م ثم قِس الـpH بعده"
+ :m&&["butter","wax"].includes(m.cat)?"اصهره أولاً (الشموع 70–75°م) قبل بقية الطور":p==="A"?"ذوّبه في الماء مع التحريك":p==="B"?"اصهره أو امزجه مع الطور الدهني":"أضفه تحت 40°م";
+ return t+(m&&m.co?` — ⚠ ${m.co}`:"")};
+const gl=ph=>rows.filter(r=>r.n.trim()&&phs(r)===ph).map(r=>`• ${r.n.trim()} — ${(pv(r)*batch/100).toFixed(2)} غ: ${NF(r)}`).join("\n")||"—";
+function st(){
+ const A=gl("A"),B=gl("B"),C=gl("C"),t=ty(),h=x=>x!=="—",s=[`عقّم الأدوات والعبوات بكحول 70% وزِن كل مكوّن بدقة (الدفعة ${batch} غ).`];
+ if(t==="em")s.push(`الطور A (مائي) — سخّنه إلى 75°م:\n${A}`,`الطور B (دهني) — سخّنه إلى 75°م حتى يذوب:\n${B}`,"اسكب B في A مع خلط عالٍ 2–3 دقائق حتى يتجانس.","برّد مع تحريك هادئ إلى 40°م.");
+ else if(t==="an")s.push(`الطور الدهني — على حمام مائي 70–75°م:\n${B}`,"برّد إلى 45°م مع التحريك.");
+ else if(t==="pw")s.push(`المساحيق (الأقل كمية أولاً):\n${[A,B,C].filter(h).join("\n")}`,"اغربلها لإزالة التكتلات ثم اخلط جيداً.");
+ else{s.push(`الطور A:\n${A}`+(t==="cl"?"\n(يجوز تسخين خفيف حتى 50°م لإذابة الصلب، واخلط بلا إدخال هواء)":""));if(h(B))s.push(`الطور B — أضفه ببطء مع التحريك:\n${B}`)}
+ if(t!=="pw"&&t!=="an"&&h(C))s.push(`الطور C (تحت 40°م):\n${C}`);
+ if(t==="an"&&h(C)&&h(A))s.push(`الإضافات (تحت 45°م):\n${C}`);
+ if(t==="cl")s.push("أضف الملح أو المكثّف آخراً وبالتدريج لضبط القوام.");
+ if(rows.some(isW))s.push("اضبط الـ pH (4.5–6) قطرة قطرة وقسه بشريط pH.");
+ s.push(t==="an"?"اسكب في العبوات فوراً ودعها تتصلب.":t==="pw"?"عبّئ في وعاء جاف محكم.":"عوّض الماء المتبخر بالوزن وعبّئ في عبوة نظيفة، وراقب 24 ساعة ثم أسبوعاً (انفصال، رائحة، لون).");
+ return s}
+function rr(){
+ $("#rows").innerHTML=rows.map((r,i)=>`<div class="rw"><div class="r1"><input data-i="${i}" data-k="n" list="dn" value="${esc(r.n)}" placeholder="اسم المكوّن" aria-label="اسم المكوّن"><input data-i="${i}" data-k="f" list="df" value="${esc(r.f)}" placeholder="الوظيفة (ابحث)" aria-label="وظيفة المكوّن"><input type="number" step="0.1" min="0" data-i="${i}" data-k="p" value="${esc(r.p)}" placeholder="%" aria-label="النسبة"><span class="g" id="g${i}"></span><button class="lk" data-in="${i}" aria-label="معلومات المكوّن">ⓘ</button><button class="x" data-d="${i}" aria-label="حذف">×</button></div><div class="chips" id="sg${i}"></div></div>`).join("");upd()}
+function upd(){
+ rows.forEach((r,i)=>{const g=$("#g"+i);if(g)g.textContent=(pv(r)*batch/100).toFixed(2)+" غ";const c=$("#sg"+i);if(c){const l=r.n.trim()&&!fo(r)?sg(r.n):[];c.innerHTML=l.length?'<span class="sub">اقتراح:</span>'+l.map(x=>`<button class="lk" data-sf="${i}|${x.en}">${x.en}</button>`).join(""):""}});
+ const t=tot(),ok=Math.abs(t-100)<0.01;$("#tot").className="tot"+(ok?"":" bad");$("#tot").innerHTML=`<span>المجموع</span><span>${t.toFixed(2)}% — ${(t*batch/100).toFixed(2)} غ</span>`;
+ if(made){const E=chk();FX=E.map(x=>x.fx);const n=E.filter(x=>x.s!=="in").length;
+ $("#eh").textContent=`الأخطاء وطريقة تصحيحها (${n})`;
+ $("#errs").innerHTML=(n?"":'<div class="msg ok">لا توجد أخطاء ظاهرة. راجع الحدود القانونية قبل التسويق.</div>')+E.map((x,i)=>`<div class="msg ${x.s==="in"?"ok":x.s}"><b>${esc(x.t)}</b><br>${esc(x.m)}<br>✔ التصحيح: ${esc(x.h)}${x.fx?` <button class="lk" data-fx="${i}">طبّق</button>`:""}</div>`).join("");
+ $("#steps").innerHTML=st().map(x=>`<li>${esc(x)}</li>`).join("")}
+ trN(document.body);try{localStorage.setItem("dobvi_p",JSON.stringify({pn:$("#pn").value,batch,rows}))}catch(_){}}
+function bal(soft){const w=rows.find(r=>isW(r)&&(fo(r)||{}).en==="SOLVENT")||rows.find(isW);if(!w){if(!soft){const m=+(100-tot()).toFixed(3);if(m>0)rows.unshift({n:"ماء مقطر",f:"SOLVENT",p:String(m)})}return}w.p=String(Math.max(0,+(100-(tot()-pv(w))).toFixed(3)))}
+function fx(k){const x=FX[k];if(!x)return;if(x.add){rows.push({n:x.add[0],f:x.add[1],p:x.add[2]});bal(true)}else if(x.set)rows[x.set[0]].p=String(x.set[1]);else if(x.bal)bal();rr()}
+const CATF={oil:["SKIN CONDITIONING - EMOLLIENT","SKIN CONDITIONING - OCCLUSIVE","REFATTING"],butter:["SKIN CONDITIONING - EMOLLIENT","SKIN CONDITIONING - OCCLUSIVE","REFATTING"],wax:["BINDING","OCCLUSIVE"],emol:["SKIN CONDITIONING - EMOLLIENT"],hum:["HUMECTANT","SKIN CONDITIONING - HUMECTANT","MOISTURISING"],water:["SOLVENT","TONIC"],pres:["PRESERVATIVE","ANTIMICROBIAL"],ph:["pH ADJUSTERS","BUFFERING"],surf:["SURFACTANT - CLEANSING","SURFACTANT","FOAMING"],emu:["SURFACTANT - EMULSIFYING","EMULSION STABILISING"],thick:["VISCOSITY CONTROLLING","GEL FORMING","FILM FORMING"],pow:["BULKING","ABSORBENT","ABRASIVE"],herb:["TONIC","SOOTHING","SKIN CONDITIONING"],ess:["PERFUMING","FRAGRANCE","REFRESHING"],fra:["FRAGRANCE","PERFUMING"],active:["SKIN CONDITIONING","SOOTHING"],sil:["SKIN CONDITIONING - OCCLUSIVE","SMOOTHING"]};
+const fcard=f=>`<button class="fi" data-pf="${f.en}"><b>${f.en}</b> — ${f.ar}<br><small>${GN[f.g]} · أمثلة: ${f.ex} · نسبة تقريبية ${f.mn}–${f.mx}%</small></button>`;
+function sgI(){const q=nz($("#fq").value),l=q.length<2?[]:IL.filter(x=>x.k0!==q&&(x.k0.includes(q)||x.e.includes(q))).slice(0,12);$("#fsg").innerHTML=l.map(x=>`<button class="lk" data-pi="${x.i.id}">${esc(x.i.n)}</button>`).join("")}
+function fs(){sgI();const v=$("#fq").value,q=nz(v),m=fi(v),a=sg(v),b=((m&&CATF[m.cat])||[]).map(x=>FT.find(f=>f.en===x)).filter(f=>f&&!a.includes(f)),c=FT.filter(f=>q&&!a.includes(f)&&!b.includes(f)&&nz(f.en+" "+f.ar+" "+f.ex+" "+GN[f.g]).includes(q));let h="";
+ if(!q)h=FT.map(fcard).join("");
+ else{if(a.length)h+=`<h2>وظائف «${esc(v)}» المسجّلة في الجدول (${a.length} من 83)</h2>`+a.map(fcard).join("");
+  if(b.length)h+=`<h2>وظائف محتملة حسب فئته (تقدير)</h2>`+b.map(fcard).join("");
+  if(c.length)h+=`<h2>نتائج أخرى مطابقة للنص</h2>`+c.slice(0,25).map(fcard).join("");
+  if(!h)h='<div class="msg wr">لا وظائف مسجّلة لهذا المكوّن في الجدول؛ اكتب اسمه كما في INCI أو اختر الوظيفة من القائمة.</div>'}
+ $("#fres").innerHTML=h;trN($("#fres"))}
+function showI(i){const r=rows[i],n=r&&r.n.trim();if(!n)return;const m=fi(n),l=sg(n);
+ $("#ib").innerHTML=`<button class="x" data-cl="1" aria-label="إغلاق" style="float:left;font-size:24px">×</button><h2>معلومات المكوّن (مستقلة عن وصفتك)</h2><div style="font-size:19px;font-weight:700">${esc(m?m.n:n)}</div>`+(m?`<div class="sub">${esc(m.f)} — الاستعمال المعتاد ${m.min}–${m.max}%</div><h2>المميزات</h2><ul class="list p"><li>${esc(m.pr)}</li></ul><h2>العيوب</h2><ul class="list c"><li>${esc(m.co)}</li></ul>`:'<div class="msg wr">لا توجد بيانات عن هذا المكوّن في القاعدة؛ راجع المراجع الرسمية وورقة بيانات المورّد.</div>')+(l.length?`<h2>وظائفه في الجدول</h2><div class="chips">${l.map(x=>`<span class="chip">${x.en}</span>`).join("")}</div>`:"");$("#iw").hidden=false;trN($("#ib"))}
+function hide(){made=false;$("#res").hidden=true}
+function setF(i,en){rows[i].f=en;cur=i;hide();rr()}
+document.addEventListener("focusin",e=>{if(e.target.dataset&&e.target.dataset.i!=null)cur=+e.target.dataset.i});
+document.addEventListener("input",e=>{const el=e.target;
+ if(el.id==="fq")fs();else if(el.id==="batch"){batch=Math.max(1,parseFloat(el.value)||100);hide();upd()}else if(el.id==="pn"){hide();upd()}
+ else if(el.dataset.k){rows[+el.dataset.i][el.dataset.k]=el.value;hide();upd()}});
+document.addEventListener("change",e=>{const el=e.target,k=el.dataset.k;if(k==="f"){const f=rf(el.value);if(f){rows[+el.dataset.i].f=f.en;el.value=f.en;hide();upd()}}else if(k==="n"&&el.value.trim())showI(+el.dataset.i)});
+document.addEventListener("click",e=>{const t=e.target.closest("button,#splash,#iw");if(!t)return;
+ if(t.id==="splash"||t.id==="spgo"){const sp=$("#splash");sp.classList.add("off");setTimeout(()=>sp.remove(),1000)}
+ else if(t.id==="lang"){lang=lang==="ar"?"en":"ar";document.documentElement.lang=lang;document.documentElement.dir=lang==="en"?"ltr":"rtl";t.textContent=lang==="en"?"AR | EN":"EN | AR";rr();fs()}
+ else if(t.id==="iw"){if(e.target===t)t.hidden=true}
+ else if(t.dataset.cl)$("#iw").hidden=true;
+ else if(t.dataset.pi){$("#fq").value=I[t.dataset.pi].n;fs()}
+ else if(t.dataset.in!=null)showI(+t.dataset.in);
+ else if(t.id==="make"){made=true;$("#res").hidden=false;upd();$("#res").scrollIntoView({behavior:"smooth"})}
+ else if(t.dataset.d!=null){hide();rows.splice(+t.dataset.d,1);if(!rows.length)rows.push({n:"",f:"",p:""});rr()}
+ else if(t.dataset.fx!=null)fx(+t.dataset.fx);
+ else if(t.dataset.sf){const[i,en]=t.dataset.sf.split("|");setF(+i,en)}
+ else if(t.dataset.pf){let i=rows[cur]?cur:rows.findIndex(r=>!r.f);if(i<0){rows.push({n:"",f:"",p:""});i=rows.length-1}setF(i,t.dataset.pf)}
+ else if(t.id==="addr"){rows.push({n:"",f:"",p:""});cur=rows.length-1;rr()}
+ else if(t.id==="clr"){rows=[{n:"",f:"",p:""},{n:"",f:"",p:""},{n:"",f:"",p:""}];$("#pn").value="";rr()}
+ else if(t.id==="copy"){let s=`DOB 7 — ${$("#pn").value||"منتجي"} (${batch} غ)\n`;rows.forEach(r=>{if(r.n.trim())s+=`${r.n} | ${(fo(r)||{en:"؟"}).en} | ${pv(r)}% = ${(pv(r)*batch/100).toFixed(2)} غ\n`});s+="\nطريقة التحضير:\n"+st().map((x,i)=>`${i+1}. ${x}`).join("\n");const E=chk().filter(x=>x.s!=="in");if(E.length)s+="\n\nالأخطاء:\n"+E.map(x=>`- ${x.t}: ${x.h}`).join("\n");try{navigator.clipboard.writeText(s).then(()=>{t.textContent="تم النسخ"},()=>{t.textContent="تعذّر النسخ"})}catch(_){t.textContent="تعذّر النسخ"}}});
+$("#dn").innerHTML=IL.map(x=>`<option value="${esc(x.i.n)}">`).join("");
+$("#df").innerHTML=FT.map(f=>`<option value="${f.en} — ${f.ar}">`).join("");
+try{const sv=JSON.parse(localStorage.getItem("dobvi_p")||"null");if(sv&&Array.isArray(sv.rows)&&sv.rows.length){rows=sv.rows.map(r=>({n:String(r.n||""),f:String(r.f||""),p:String(r.p||"")}));batch=+sv.batch||100;$("#pn").value=String(sv.pn||"");$("#batch").value=batch}}catch(_){}
+if(!rows.length)rows=[{n:"",f:"",p:""},{n:"",f:"",p:""},{n:"",f:"",p:""}];
+rr();fs();
+</script>
+</body>
+</html>
